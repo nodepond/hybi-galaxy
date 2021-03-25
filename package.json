@@ -30,7 +30,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build",
+    "build": "env-cmd -f .env.app react-scripts build && rm -rf app && mv build app",
     "build:demo": "env-cmd -f .env.demo react-scripts build && rm -rf demo && mv build demo",
     "build:app": "env-cmd -f .env.app react-scripts build && rm -rf app && mv build app",
     "test": "react-scripts test",
