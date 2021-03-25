@@ -1,3 +1,11 @@
+# About Hybi-Galaxy
+
+This is a fork from chatmosphere.cc 
+
+This project should evolve into a tool for theaters, to enable a hybrid stage experience. Working together with the Boat People Project e.V.
+
+Old Readme:
+
 <div align="center" style="border:0 solid #efefef; background-color: #fff; padding:0; margin:0 0 50px 0; color:#333;">
 <h1 style="border-bottom:none; margin-bottom:0;">😽 Chatmosphere</h1>
 <b>The Open Source Videochat for Cozy Talks</b>
