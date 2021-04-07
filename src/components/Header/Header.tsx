@@ -1,17 +1,7 @@
 import * as React from 'react';
-import styled from "styled-components";
-import kissingCat from './../../assets/kissingCat.svg'
-import loveCat from './../../assets/loveCat.svg'
+import styled from "styled-components"
 
 const StyledHeader = styled.a`
-  &:before {
-    content: url(${kissingCat});
-    margin-right: 5px;
-  }
-  &:after {
-    display:none;
-    content: url(${loveCat});
-  }
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -27,15 +17,8 @@ const StyledHeader = styled.a`
   text-decoration: none;
   color:#000;
   height: 40px;
-  &:hover {
-    background-color: ${props => props.theme.base['4']};
-    &:before {
-      content: url(${loveCat});
-      margin-right: 5px;
-    }
-  }
 `
 
 export const Header = ({children}) => (
-  <StyledHeader target="_blank" href="http://chatmosphere.cc">Chatmosphere</StyledHeader>
+  <StyledHeader>Hybi-Galaxy</StyledHeader>
 )
