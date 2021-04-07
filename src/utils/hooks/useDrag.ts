@@ -45,7 +45,6 @@ export const useDrag = ({initPos, scale, callback}) => {
 
   const onDown = (e) => {
     e.preventDefault()
-    debugger
     oldPos.current = {
       x: e.currentTarget.offsetLeft,
       y: e.currentTarget.offsetTop,
