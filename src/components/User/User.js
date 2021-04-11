@@ -1,11 +1,10 @@
 import React, { useCallback, useEffect } from 'react';
-import { useConferenceStore } from './../../store/ConferenceStore';
+import { useConferenceStore } from '../../store/ConferenceStore';
 import { ReloadHint } from '../ReloadHint/ReloadHint';
 import { AudioTrack } from './AudioTrack';
 import { MuteIndicator } from './MuteIndicator';
 import { VideoTrack } from './VideoTrack';
 import { NameTag } from '../NameTag/NameTag';
-
 
 export const User = ({id, user}) => {
 
