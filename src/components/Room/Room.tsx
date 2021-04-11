@@ -9,7 +9,7 @@ the fix is to set the size of the react-transform-component and react-transform-
 const RoomContainer = styled.div`
   width:${panOptions.room.size.x}px;height:${panOptions.room.size.y}px;
   box-sizing: border-box;
-  display:block;
+  display:flex;
 `
 
 const Background = styled.div`
@@ -23,8 +23,8 @@ const Background = styled.div`
 export const Room:React.FC = ({children}) => {
   return (
     <RoomContainer>
-      {children}
       <Background />
+      {children}
     </RoomContainer>
   )
 }
