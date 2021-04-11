@@ -66,9 +66,9 @@ export const Enter = () => {
 			<CenterContainer id="centerContainer">
 				<BigHeadContainer>
 					<Wave />
-					<BigHeadline>Welcome to Chatmosphere</BigHeadline>
+					<BigHeadline>Willkommen in der Hybi-Galaxy</BigHeadline>
 				</BigHeadContainer>
-				<SubHeadline>The Open Source Videochat for Cozy Talks</SubHeadline>
+				<SubHeadline>Das digitale Theater-Foyer</SubHeadline>
 			</CenterContainer>
 			<Footer>
 				<MuteButton />

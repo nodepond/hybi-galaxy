@@ -15,7 +15,6 @@ const AppContainer = styled.div`
   cursor: default;
 `
 
-
 function App() {
   return (
     <AppContainer>
@@ -31,7 +30,7 @@ function App() {
           </Route>
 
           <Route path="/">
-            <Header>Chatmosphere</Header>
+            <Header>Hybi-Galaxy</Header>
             <Home />
           </Route>
         </Switch>
