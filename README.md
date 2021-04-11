@@ -4,6 +4,12 @@ This is a fork from chatmosphere.cc
 
 This project should evolve into a tool for theaters, to enable a hybrid stage experience. Working together with the Boat People Project e.V.
 
+To deploy...
+
+1. Build app locally
+2. Install netlify-cli
+3. `netlify deploy --prod`
+
 Old Readme:
 
 <div align="center" style="border:0 solid #efefef; background-color: #fff; padding:0; margin:0 0 50px 0; color:#333;">
