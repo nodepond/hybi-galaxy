@@ -6,7 +6,6 @@ import { mountStoreDevtool } from "simple-zustand-devtools";
 
 
 export type Point = {x:number, y:number}
-//Feels like ZoomPan doesnt belong to LocalStore; maybe state of panHandler or own store?
 type ZoomPan = {
   pos:Point
   pan:Point 
