@@ -4,7 +4,6 @@ import DragWrapper from '../DragWrapper/DragWrapper'
 import {throttle} from 'lodash'
 
 export const UserDragContainer = ({children}) => {
-
   const pos = useLocalStore(store => store.pos)
   const zoomTransformPan = useLocalStore(store => store.pan)
   const zoomTransformScale = useLocalStore(store => store.scale)

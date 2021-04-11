@@ -22,7 +22,6 @@ type Store = {
 } & User & ZoomPan
 
 export const useLocalStore = create<Store>((set,get) => {
-
   const state = {
     id:"",
     mute:false,
