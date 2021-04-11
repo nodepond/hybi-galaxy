@@ -2,7 +2,7 @@ import produce from 'immer';
 import { mountStoreDevtool } from 'simple-zustand-devtools';
 import create from 'zustand';
 import { conferenceOptions } from '../components/JitsiConnection/jitsiOptions';
-import { getVolumeByDistance } from '../utils/VectorHelpers';
+import { getVolumeByDistance, getVolumeByRoomOrDistance } from '../utils/VectorHelpers';
 import { useConnectionStore } from './ConnectionStore';
 import { useLocalStore } from './LocalStore';
 
@@ -32,7 +32,7 @@ export type Track = {
 export type AudioTrack = Track
 export type VideoTrack = Track 
 
-export type User = { id:ID, user?:any, mute:boolean, volume:number, pos:Point, audio?:AudioTrack, video?:VideoTrack }
+export type User = { id:ID, user?:any, mute:boolean, volume:number, pos:Point, audio?:AudioTrack, video?:VideoTrack, privateRoom:boolean }
 type Users = { [id:string]:User }
 type Point = {x:number, y:number}
 type ID = string
@@ -87,7 +87,7 @@ export const useConferenceStore = create<ConferenceStore>((set,get) => {
 
   // Private Helper Functions *******************************************
   const _addUser = (id:ID, user?:any) :void => produceAndSet (newState => {
-    newState.users[id] = {id:id, user:user, mute:false, volume:1, pos:{x:0, y:0}}
+    newState.users[id] = {id:id, user:user, mute:false, volume:1, pos:{x:0, y:0}, privateRoom:false}
   })
   const _removeUser = (id:ID) :void => produceAndSet (newState => {
     delete newState.users[id]
@@ -200,15 +200,27 @@ export const useConferenceStore = create<ConferenceStore>((set,get) => {
     const conference = get().conferenceObject
     conference?.setDisplayName(name)
   }
+  // TODO: Currently not sure, why we need two different methods calculateVolume and calculateVolumes. Why not have a generic method handle all calculations?
   const calculateVolume = (id:ID):void => produceAndSet (newState => {
     const localUserPosition:Point = useLocalStore.getState().pos //check if this is updated or kept by closure
-    newState.users[id]['volume'] = getVolumeByDistance(localUserPosition, newState.users[id]['pos'])
+    // newState.users[id]['volume'] = getVolumeByDistance(localUserPosition, newState.users[id]['pos'])
+    newState.users[id]['volume'] = getVolumeByRoomOrDistance(useLocalStore.getState().privateRoom, localUserPosition, newState.users[id]['pos'])
   })
   const calculateVolumes = (localPos:Point) => produceAndSet (newState => {
     const users = newState.users
     Object.keys(users).map(key => {
       const user = users[key]
-      newState.users[key]['volume'] = getVolumeByDistance(localPos, user.pos)
+      // console.log('user**', user)
+      // TODO: This calculation of provateRoom is just a preliminary hack for demo tomorrow.
+      // Should get transmitted by peers later when datastrauckture is more clear.
+      const privateRoom = user.pos.x < 2500
+      // console.log('user**pm', privateRoom)
+      newState.users[key]['volume'] = getVolumeByRoomOrDistance(privateRoom, localPos, user.pos)
+      // TODO: Also just a hack, to mute privateRoom people, if not in privateRoom itself
+      if (localPos.x > 2500 && privateRoom) {
+        // console.log('***mute from outside')
+        newState.users[key]['volume'] = 0
+      }
       return null
     })
   })

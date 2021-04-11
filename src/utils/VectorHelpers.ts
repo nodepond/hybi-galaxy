@@ -20,3 +20,13 @@ export const getVolumeByDistance = (p1:Point, p2:Point):number => {
 	const v = mapVolumeToDist(dWidth, d)
 	return v
 }
+
+export const getVolumeByRoomOrDistance = (privateRoom: boolean, p1:Point, p2:Point):number => {
+	let v = 1
+	if (privateRoom) {
+		v = 1
+	} else {
+		v = getVolumeByDistance(p1, p2)
+	}
+	return v
+}

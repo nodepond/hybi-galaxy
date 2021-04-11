@@ -31,6 +31,7 @@ export const useLocalStore = create<Store>((set,get) => {
     pos:panOptions.user.initialPosition,
     pan: {x:transformWrapperOptions.defaultPositionX || 0,y: transformWrapperOptions.defaultPositionY || 0},
     scale:1,
+    privateRoom: false
   }
 
   // # Private Functions
@@ -40,6 +41,11 @@ export const useLocalStore = create<Store>((set,get) => {
   // # Public Functions
   const setLocalPosition = (newPosition) => {
     set({pos:newPosition})
+    if (newPosition.x < 2500-100) {
+      set({privateRoom: true})
+    } else {
+      set({privateRoom: false})
+    }
   }
   
   const toggleMute = () => {
