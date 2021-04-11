@@ -8,7 +8,8 @@ To deploy...
 
 1. Build app locally
 2. Install netlify-cli
-3. `netlify deploy --prod`
+3a. (connect to netlify, only first time) `netlify init`
+3b. `netlify deploy --prod`
 
 Old Readme:
 
