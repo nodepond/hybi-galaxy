@@ -38,7 +38,7 @@ export const Home = () => {
 				<Wave />
 				<BigHeadline>Willkommen in der Hybi-Galaxy</BigHeadline>
 			</BigHeadContainer>
-			<SubHeadline>Das digitale Theater Foyer</SubHeadline>
+			<SubHeadline>Das digitale Theater-Foyer</SubHeadline>
 			<FormContainer>
 				<NameInputContainer />
 			</FormContainer>
