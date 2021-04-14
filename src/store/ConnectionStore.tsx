@@ -71,7 +71,7 @@ type IStore = {
 
 export const useConnectionStore = create<IStore>((set, get) => {
   const initialState = {
-    serverUrl: "meet.jit.si",
+    serverUrl: "the-prdct.com",
     jsMeet: undefined,
     room: null,
     connection: undefined,
@@ -127,7 +127,7 @@ export const useConnectionStore = create<IStore>((set, get) => {
         jsMeet.events.connection.CONNECTION_FAILED,
         (e) => {
           console.log("tmpConnection:",tmpConnection.xmpp.lastErrorMsg)
-          // console.log("tmpConnection:",get().connection)
+          console.log("tmpConnection:",get().connection)
           set({ connection: undefined, error:tmpConnection.xmpp.lastErrorMsg })
         },
       )
