@@ -11,6 +11,12 @@ To deploy...
 3a. (connect to netlify, only first time) `netlify init`
 3b. `netlify deploy --prod`
 
+## Useful infos
+
+The frontent uses / relies on lib-litsi-meet: https://jitsi.github.io/handbook/docs/dev-guide/dev-guide-ljm-api
+
+Find it in /public/lib/
+
 Old Readme:
 
 <div align="center" style="border:0 solid #efefef; background-color: #fff; padding:0; margin:0 0 50px 0; color:#333;">
