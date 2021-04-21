@@ -53,7 +53,8 @@ export const LocalStoreLogic = () => {
       throttledSendPos(newPos, conference)
       const newRoom = JSON.stringify({room, id: id})
       throttledSendRoom(newRoom, conference)
-      calculateVolumes(pos)
+      // calculate all volumes from other users on thie playfield after moving myself
+      calculateVolumes(room, pos)
     }
   },[pos, room, id, conference, calculateVolumes])
   

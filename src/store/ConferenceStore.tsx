@@ -67,7 +67,7 @@ type ConferenceActions = {
 type UserActions = {
   setDisplayName:(name:string)=>void
   calculateVolume: (id:ID) => void
-  calculateVolumes: (localPos:Point) => void
+  calculateVolumes: (localRoom:String, localPos:Point) => void
 }
 
 // # IMPLEMENTATIONS *******************************************
@@ -207,28 +207,24 @@ export const useConferenceStore = create<ConferenceStore>((set,get) => {
     conference?.setDisplayName(name)
   }
 
-  // Solved: Currently not sure, why we need two different methods calculateVolume and calculateVolumes. Why not have a generic method handle all calculations?
-  // ah...If I move myself... all new relative volumues are calculated by calculateVolumes
-  // if one mover moves, only that new relation between the moved user and myself if getting calculated with calculateVolume
+  // if one user moves, only that new relation between the moved user and myself if getting calculated with calculateVolume
   const calculateVolume = (id:ID):void => produceAndSet (newState => {
     const localUserPosition:Point = useLocalStore.getState().pos
     const localRoom:String = useLocalStore.getState().room
     console.log('calculateVolume localUserPosition, localRool', localUserPosition, localRoom)
     // newState.users[id]['volume'] = getVolumeByDistance(localUserPosition, newState.users[id]['pos'])
     // newState.users[id]['volume'] = getVolumeByRoomOrDistance(useLocalStore.getState().privateRoom, localUserPosition, newState.users[id]['pos'])
+    newState.users[id]['volume'] = getVolumeByRoomOrDistance(localRoom, newState.users[id]['room'], localUserPosition, newState.users[id]['pos'])
   })
-  const calculateVolumes = (localPos:Point) => produceAndSet (newState => {
-    console.log('**here**')
+  // If I move myself... all new relative volumes are calculated by calculateVolumes
+  const calculateVolumes = (localRoom:String, localPos:Point) => produceAndSet (newState => {
     const users = newState.users
     Object.keys(users).map(key => {
       const user = users[key]
-      console.log('user**', user)
-      // TODO: This calculation of provateRoom is just a preliminary hack for demo tomorrow.
-      // Should get transmitted by peers later when datastrauckture is more clear.
-      // const privateRoom = user.pos.x < 2500
-      // console.log('user**pm', privateRoom)
       // newState.users[key]['volume'] = getVolumeByRoomOrDistance(privateRoom, localPos, user.pos)
-      newState.users[key]['volume'] = getVolumeByDistance(localPos, user.pos)
+      // newState.users[key]['volume'] = getVolumeByDistance(localPos, user.pos)
+      newState.users[key]['volume'] = getVolumeByRoomOrDistance(localRoom, user.room, localPos, user.pos)
+
       //// TODO: Also just a hack, to mute privateRoom people, if not in privateRoom itself
       // if (localPos.x > 2500 && privateRoom) {
       //   // console.log('***mute from outside')
