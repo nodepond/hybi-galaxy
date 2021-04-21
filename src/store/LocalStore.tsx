@@ -40,9 +40,16 @@ export const useLocalStore = create<Store>((set,get) => {
   
   // # Public Functions
   const setLocalPosition = (newPosition) => {
+    console.log(newPosition)
     set({pos:newPosition})
     if (newPosition.x < 2500-100) {
       set({room: 'room-1'})
+    } else if (
+      newPosition.x < 3500-100 && 
+      newPosition.x > 2500-100 &&
+      newPosition.y < 3100-100 &&
+      newPosition.y > 1700-100) {
+      set({room: 'room-2'})
     } else {
       set({room: 'default'})
     }
