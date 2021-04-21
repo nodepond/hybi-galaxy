@@ -32,7 +32,7 @@ export type Track = {
 export type AudioTrack = Track
 export type VideoTrack = Track 
 
-export type User = { id:ID, user?:any, mute:boolean, volume:number, pos:Point, audio?:AudioTrack, video?:VideoTrack, privateRoom:boolean }
+export type User = { id:ID, user?:any, mute:boolean, volume:number, pos:Point, audio?:AudioTrack, video?:VideoTrack, room?:String }
 type Users = { [id:string]:User }
 type Point = {x:number, y:number}
 type ID = string
@@ -87,7 +87,7 @@ export const useConferenceStore = create<ConferenceStore>((set,get) => {
 
   // Private Helper Functions *******************************************
   const _addUser = (id:ID, user?:any) :void => produceAndSet (newState => {
-    newState.users[id] = {id:id, user:user, mute:false, volume:1, pos:{x:0, y:0}, privateRoom:false}
+    newState.users[id] = {id:id, user:user, mute:false, volume:1, pos:{x:0, y:0}, room:'default'}
   })
   const _removeUser = (id:ID) :void => produceAndSet (newState => {
     delete newState.users[id]
@@ -111,6 +111,11 @@ export const useConferenceStore = create<ConferenceStore>((set,get) => {
   const _onPositionReceived = (e:any):void => {
     const pos = JSON.parse(e.value)
     _updateUserPosition(pos.id, {x:pos.x, y:pos.y})
+  }
+  const _onRoomReceived = (e:any):void => {
+    const room = JSON.parse(e.value)
+    console.log('room recieved:', room)
+    // todo: update volume-settings based on room
   }
   const _updateUserPosition = (id:ID, pos:Point):void => produceAndSet (newState => {
     if(newState.users[id]) newState.users[id]['pos'] = pos
@@ -171,6 +176,7 @@ export const useConferenceStore = create<ConferenceStore>((set,get) => {
       // conference.on(JitsiMeetJS.events.conference.TRACK_AUDIO_LEVEL_CHANGED, on_remote_track_audio_level_changed);
       //conference.on(JitsiMeetJS.events.conference.PHONE_NUMBER_CHANGED, onPhoneNumberChanged);
       conference.addCommandListener("pos", _onPositionReceived)
+      conference.addCommandListener("room", _onRoomReceived)
       // r.on(JitsiMeetJS.events.conference.PARTICIPANT_PROPERTY_CHANGED, (e) => console.log("Property Changed ", e))
       window.addEventListener('beforeunload', leave) //does this help?  
       window.addEventListener('unload', leave) //does this help?
@@ -203,8 +209,8 @@ export const useConferenceStore = create<ConferenceStore>((set,get) => {
   // TODO: Currently not sure, why we need two different methods calculateVolume and calculateVolumes. Why not have a generic method handle all calculations?
   const calculateVolume = (id:ID):void => produceAndSet (newState => {
     const localUserPosition:Point = useLocalStore.getState().pos //check if this is updated or kept by closure
-    // newState.users[id]['volume'] = getVolumeByDistance(localUserPosition, newState.users[id]['pos'])
-    newState.users[id]['volume'] = getVolumeByRoomOrDistance(useLocalStore.getState().privateRoom, localUserPosition, newState.users[id]['pos'])
+    newState.users[id]['volume'] = getVolumeByDistance(localUserPosition, newState.users[id]['pos'])
+    // newState.users[id]['volume'] = getVolumeByRoomOrDistance(useLocalStore.getState().privateRoom, localUserPosition, newState.users[id]['pos'])
   })
   const calculateVolumes = (localPos:Point) => produceAndSet (newState => {
     const users = newState.users
@@ -213,14 +219,15 @@ export const useConferenceStore = create<ConferenceStore>((set,get) => {
       // console.log('user**', user)
       // TODO: This calculation of provateRoom is just a preliminary hack for demo tomorrow.
       // Should get transmitted by peers later when datastrauckture is more clear.
-      const privateRoom = user.pos.x < 2500
+      // const privateRoom = user.pos.x < 2500
       // console.log('user**pm', privateRoom)
-      newState.users[key]['volume'] = getVolumeByRoomOrDistance(privateRoom, localPos, user.pos)
-      // TODO: Also just a hack, to mute privateRoom people, if not in privateRoom itself
-      if (localPos.x > 2500 && privateRoom) {
-        // console.log('***mute from outside')
-        newState.users[key]['volume'] = 0
-      }
+      // newState.users[key]['volume'] = getVolumeByRoomOrDistance(privateRoom, localPos, user.pos)
+      newState.users[key]['volume'] = getVolumeByDistance(localPos, user.pos)
+      //// TODO: Also just a hack, to mute privateRoom people, if not in privateRoom itself
+      // if (localPos.x > 2500 && privateRoom) {
+      //   // console.log('***mute from outside')
+      //   newState.users[key]['volume'] = 0
+      // }
       return null
     })
   })

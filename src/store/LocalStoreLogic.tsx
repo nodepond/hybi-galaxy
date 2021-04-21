@@ -9,22 +9,26 @@ import { throttle } from "lodash"
 const sendPositionToPeers = (pos:string, conferenceObject) => {
   conferenceObject?.sendCommand("pos", { value: pos })
 }
+const sendRoomToPeers = (room:string, conferenceObject) => {
+  console.log('sendRoomToPeers called with ', room)
+  conferenceObject?.sendCommand("room", { value: room })
+}
 //throttle mustnt be rerendered or it wont work
 const throttledSendPos = throttle(sendPositionToPeers, 200)
+const throttledSendRoom = throttle(sendRoomToPeers, 200)
 
-///LocalStore has dependency on ConferenceStore.
-///This component provides the communication from ConferenceStore to LocalStore.
+// LocalStore has dependency on ConferenceStore.
+// This component provides the communication from ConferenceStore to LocalStore.
 export const LocalStoreLogic = () => {
-
   const conference = useConferenceStore(state => state.conferenceObject)
   const calculateVolumes = useConferenceStore((store) => store.calculateVolumes)
   const id = useLocalStore(store => store.id)
   const pos = useLocalStore(store => store.pos)
+  const room = useLocalStore(store => store.room)
   const setLocalTracks = useLocalStore(store => store.setLocalTracks)
   const setMyID = useLocalStore(store => store.setMyID)
   const initJitsiMeet = useConnectionStore(store => store.initJitsiMeet)
   const jsMeet = useConnectionStore(store => store.jsMeet)
-
 
   useEffect(() => {
     initJitsiMeet()
@@ -47,9 +51,11 @@ export const LocalStoreLogic = () => {
     if(id) {
       const newPos = JSON.stringify({...pos, id: id})
       throttledSendPos(newPos, conference)
+      const newRoom = JSON.stringify({room, id: id})
+      throttledSendRoom(newRoom, conference)
       calculateVolumes(pos)
     }
-  },[pos, id, conference, calculateVolumes])
+  },[pos, room, id, conference, calculateVolumes])
   
   return null
 }

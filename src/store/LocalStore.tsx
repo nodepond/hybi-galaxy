@@ -31,7 +31,7 @@ export const useLocalStore = create<Store>((set,get) => {
     pos:panOptions.user.initialPosition,
     pan: {x:transformWrapperOptions.defaultPositionX || 0,y: transformWrapperOptions.defaultPositionY || 0},
     scale:1,
-    privateRoom: false
+    room: 'default'
   }
 
   // # Private Functions
@@ -42,9 +42,9 @@ export const useLocalStore = create<Store>((set,get) => {
   const setLocalPosition = (newPosition) => {
     set({pos:newPosition})
     if (newPosition.x < 2500-100) {
-      set({privateRoom: true})
+      set({room: 'room-1'})
     } else {
-      set({privateRoom: false})
+      set({room: 'default'})
     }
   }
   
