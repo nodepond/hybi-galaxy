@@ -10,7 +10,7 @@ const sendPositionToPeers = (pos:string, conferenceObject) => {
   conferenceObject?.sendCommand("pos", { value: pos })
 }
 const sendRoomToPeers = (room:string, conferenceObject) => {
-  console.log('sendRoomToPeers called with ', room)
+  // console.log('sendCommand sendRoomToPeers called with ', room)
   conferenceObject?.sendCommand("room", { value: room })
 }
 //throttle mustnt be rerendered or it wont work
