@@ -21,12 +21,18 @@ export const getVolumeByDistance = (p1:Point, p2:Point):number => {
 	return v
 }
 
-export const getVolumeByRoomOrDistance = (privateRoom: boolean, p1:Point, p2:Point):number => {
-	let v = 1
-	if (privateRoom) {
-		v = 1
-	} else {
-		v = getVolumeByDistance(p1, p2)
-	}
-	return v
+export const getVolumeByRoomOrDistance = (ownRoom:String, otherUserRoom:String, p1:Point, p2:Point):number => {
+	let vol = 0
+	const inDefaultRoom = ownRoom === 'default'
+	const shareSameRoom = ownRoom === otherUserRoom
+	const shareSameRoomNotDefault = ownRoom === otherUserRoom && !inDefaultRoom
+	if (inDefaultRoom && shareSameRoom) {
+		vol = getVolumeByDistance(p1, p2)
+	} else if (shareSameRoomNotDefault) {
+		vol = 1
+	} else (
+		// mute user if in different room
+		vol = 0
+	)
+	return vol
 }

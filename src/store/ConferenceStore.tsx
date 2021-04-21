@@ -32,7 +32,7 @@ export type Track = {
 export type AudioTrack = Track
 export type VideoTrack = Track 
 
-export type User = { id:ID, user?:any, mute:boolean, volume:number, pos:Point, audio?:AudioTrack, video?:VideoTrack, room?:String }
+export type User = { id:ID, user?:any, mute:boolean, volume:number, pos:Point, audio?:AudioTrack, video?:VideoTrack, room:String }
 type Users = { [id:string]:User }
 type Point = {x:number, y:number}
 type ID = string
@@ -206,17 +206,23 @@ export const useConferenceStore = create<ConferenceStore>((set,get) => {
     const conference = get().conferenceObject
     conference?.setDisplayName(name)
   }
-  // TODO: Currently not sure, why we need two different methods calculateVolume and calculateVolumes. Why not have a generic method handle all calculations?
+
+  // Solved: Currently not sure, why we need two different methods calculateVolume and calculateVolumes. Why not have a generic method handle all calculations?
+  // ah...If I move myself... all new relative volumues are calculated by calculateVolumes
+  // if one mover moves, only that new relation between the moved user and myself if getting calculated with calculateVolume
   const calculateVolume = (id:ID):void => produceAndSet (newState => {
-    const localUserPosition:Point = useLocalStore.getState().pos //check if this is updated or kept by closure
-    newState.users[id]['volume'] = getVolumeByDistance(localUserPosition, newState.users[id]['pos'])
+    const localUserPosition:Point = useLocalStore.getState().pos
+    const localRoom:String = useLocalStore.getState().room
+    console.log('calculateVolume localUserPosition, localRool', localUserPosition, localRoom)
+    // newState.users[id]['volume'] = getVolumeByDistance(localUserPosition, newState.users[id]['pos'])
     // newState.users[id]['volume'] = getVolumeByRoomOrDistance(useLocalStore.getState().privateRoom, localUserPosition, newState.users[id]['pos'])
   })
   const calculateVolumes = (localPos:Point) => produceAndSet (newState => {
+    console.log('**here**')
     const users = newState.users
     Object.keys(users).map(key => {
       const user = users[key]
-      // console.log('user**', user)
+      console.log('user**', user)
       // TODO: This calculation of provateRoom is just a preliminary hack for demo tomorrow.
       // Should get transmitted by peers later when datastrauckture is more clear.
       // const privateRoom = user.pos.x < 2500
