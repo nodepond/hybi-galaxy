@@ -114,11 +114,13 @@ export const useConferenceStore = create<ConferenceStore>((set,get) => {
   }
   const _onRoomReceived = (e:any):void => {
     const room = JSON.parse(e.value)
-    console.log('room recieved:', room)
-    // todo: update volume-settings based on room
+    _updateUserRoom(room.id, room.room)
   }
   const _updateUserPosition = (id:ID, pos:Point):void => produceAndSet (newState => {
     if(newState.users[id]) newState.users[id]['pos'] = pos
+  })
+  const _updateUserRoom = (id:ID, room:String):void => produceAndSet (newState => {
+    if(newState.users[id]) newState.users[id]['room'] = room
   })
   const _onTrackMuteChanged = (track:Track):void => {
     if(track.getType() === 'video') return
