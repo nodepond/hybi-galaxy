@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg id="RootSvg" width="100%" height="100%" viewBox="0 0 6000 6000" version="1.1" xmlns="http://www.w3.org/2000/svg" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;">
+    <g id="Ebene1">
+        <rect id="room2.1" class="room2" x="2511.49" y="1702.97" width="978.199" height="1385.2" style="fill:rgb(255,103,203);"/>
+        <path id="room2.2" class="room2" d="M4309.89,1328.28C4309.89,1240.21 4238.39,1168.71 4150.32,1168.71L3810.88,1168.71C3722.82,1168.71 3651.32,1240.21 3651.32,1328.28L3651.32,1647.41C3651.32,1735.48 3722.82,1806.97 3810.88,1806.97L4150.32,1806.97C4238.39,1806.97 4309.89,1735.48 4309.89,1647.41L4309.89,1328.28Z" style="fill:rgb(255,179,0);"/>
+        <rect x="0" y="0" width="6000" height="6000" style="fill:none;"/>
+    </g>
+</svg>

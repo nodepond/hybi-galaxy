@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { panOptions } from '../PanWrapper/panOptions';
 import backgroundImage from '../../assets/foyer-0.0.2.png';
+import {ReactComponent as BackgroundSvg} from '../../assets/foyer-background-svg-test.svg';
 
 /* fixed size won't work, because when scale is 1 there will be room to pan; but the plugin won't allow it because scale is 1. 
 the fix is to set the size of the react-transform-component and react-transform-element exlusively (see App.css) */
@@ -23,7 +24,9 @@ const Background = styled.div`
 export const Room:React.FC = ({children}) => {
   return (
     <RoomContainer>
-      <Background />
+      <Background>
+        <BackgroundSvg />
+      </Background>
       {children}
     </RoomContainer>
   )

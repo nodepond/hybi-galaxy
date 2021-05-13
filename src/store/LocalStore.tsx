@@ -41,6 +41,25 @@ export const useLocalStore = create<Store>((set,get) => {
   // # Public Functions
   const setLocalPosition = (newPosition) => {
     set({pos:newPosition})
+    let rootSvg = document.getElementById('RootSvg')
+    let zxc = document.getElementsByClassName('room2')
+    console.log('zxc-d')
+    console.log('zxc', zxc)
+    // const zxcIterable = Array.from(zxc)
+    const isHitting = Array.prototype.map.call(zxc, path => {
+
+      // please notice, that right at the moment isPointInFill() with DOMPoints only works in safari right now. This is why we use the version that inits with SVGPoint. Works on most modern browsers atm.
+      // return path.isPointInFill(new DOMPoint(newPosition.x, newPosition.y))
+      
+      // @ts-ignore
+      let myPoint = rootSvg.createSVGPoint()
+      myPoint.x = newPosition.x
+      myPoint.y = newPosition.y
+      return path.isPointInFill(myPoint)
+    })
+    // const isHitting = zxcIterable.map()
+    console.log('isHitting', isHitting)
+
     if (newPosition.x < 2500-100) {
       set({room: 'room-1'})
     } else if (
