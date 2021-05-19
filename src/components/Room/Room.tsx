@@ -1,8 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
 import { panOptions } from '../PanWrapper/panOptions';
-import backgroundImage from '../../assets/foyer-0.0.2.png';
-import {ReactComponent as BackgroundSvg} from '../../assets/foyer-background-svg-test.svg';
+import backgroundImage from '../../assets/foyer-0.0.3.jpg';
+// import {ReactComponent as BackgroundSvg} from '../../assets/foyer-background-svg-test.svg';
+import {ReactComponent as BackgroundSvg} from '../../assets/foyer-collide-background.svg';
 
 /* fixed size won't work, because when scale is 1 there will be room to pan; but the plugin won't allow it because scale is 1. 
 the fix is to set the size of the react-transform-component and react-transform-element exlusively (see App.css) */
