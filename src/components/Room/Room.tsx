@@ -22,6 +22,15 @@ const Background = styled.div`
   pointer-events: none;
 `
 
+const Divstyles = styled.iframe`
+  background-color: #f00;
+  position: absolute;
+  width: 4672px;
+  height: 2944px;
+  left: 6912px;
+  top: 4032px;
+`
+
 export const Room:React.FC = ({children}) => {
   return (
     <RoomContainer>
@@ -29,6 +38,9 @@ export const Room:React.FC = ({children}) => {
         <BackgroundSvg />
       </Background>
       {children}
+      <>
+        <Divstyles src="https://www.youtube.com/embed/ldF_RlOhRf4" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen />
+      </>
     </RoomContainer>
   )
 }
