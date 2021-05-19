@@ -37,10 +37,10 @@ export const Room:React.FC = ({children}) => {
       <Background>
         <BackgroundSvg />
       </Background>
-      {children}
       <>
         <Divstyles src="https://www.youtube.com/embed/ldF_RlOhRf4" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen />
       </>
+      {children}
     </RoomContainer>
   )
 }
