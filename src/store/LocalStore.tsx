@@ -46,8 +46,8 @@ export const useLocalStore = create<Store>((set,get) => {
 
       // @ts-ignore
       let myPoint = rootSvg.createSVGPoint()
-      myPoint.x = newPosition.x
-      myPoint.y = newPosition.y
+      myPoint.x = newPosition.x + 100
+      myPoint.y = newPosition.y + 100
       return path.isPointInFill(myPoint)
     })
     // const isHitting = zxcIterable.map()
