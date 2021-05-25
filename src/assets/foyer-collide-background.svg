@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg id="RootSvg" width="100%" height="100%" viewBox="0 0 12000 12000" version="1.1" xmlns="http://www.w3.org/2000/svg" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;">
+<g id="Ebene1">
+<rect x="0" y="0" width="12000" height="12000" style="fill:none;"/>
+<rect class="room2" id="Room2.1" x="2511.49" y="4702.97" width="978.199" height="1385.2" style="fill:#ff67cb;"/>
+<path id="Room1.1" class="room1" d="M1677.89,4661.82c-0,-167.158 -135.711,-302.869 -302.869,-302.869l-605.739,0c-167.158,0 -302.869,135.711 -302.869,302.869l0,1035.31c0,167.158 135.711,302.869 302.869,302.869l605.739,0c167.158,0 302.869,-135.711 302.869,-302.869l-0,-1035.31Z" style="fill:#24ff3b;"/>
+<path class="room2" id="Room2.2" d="M4309.89,4328.28c0,-88.066 -71.498,-159.565 -159.565,-159.565l-339.442,0c-88.066,0 -159.565,71.499 -159.565,159.565l0,319.131c0,88.066 71.499,159.565 159.565,159.565l339.442,-0c88.067,-0 159.565,-71.499 159.565,-159.565l0,-319.131Z" style="fill:#ffb300;"/>
+<rect class="seat1" id="Seat1" x="6912" y="7552" width="384" height="192" style="fill:#006fba;"/>
+<rect class="seat2" id="Seat2" x="7360" y="7552" width="384" height="192" style="fill:#006fba;"/>
+<rect class="seat3" id="Seat3" x="7808" y="7545.05" width="384" height="190.946" style="fill:#006fba;"/>
+<rect class="seat4" id="Seat4" x="8256" y="7545.05" width="384" height="190.946" style="fill:#006fba;"/>
+<rect class="seat5" id="Seat5" x="8704" y="7545.05" width="384" height="190.946" style="fill:#006fba;"/>
+<rect class="seat6" id="Seat6" x="9408" y="7545.05" width="384" height="190.946" style="fill:#006fba;"/>
+<rect class="seat7" id="Seat7" x="9856" y="7544" width="384" height="192" style="fill:#006fba;"/>
+<rect class="seat8" id="Seat8" x="10304" y="7545.05" width="384" height="190.946" style="fill:#006fba;"/>
+<rect class="seat9" id="Seat9" x="10752" y="7545.05" width="384" height="190.946" style="fill:#006fba;"/>
+<rect class="seat10" id="Seat10" x="11200" y="7545.05" width="384" height="190.946" style="fill:#006fba;"/>
+<rect class="seat11" id="Seat11" x="6912" y="7928.05" width="384" height="190.946" style="fill:#006fba;"/>
+<rect class="seat12" id="Seat12" x="7360" y="7927" width="384" height="192" style="fill:#006fba;"/>
+<rect class="seat13" id="Seat13" x="7808" y="7928.05" width="384" height="190.946" style="fill:#006fba;"/>
+<rect class="seat14" id="Seat14" x="8256" y="7929.05" width="384" height="190.946" style="fill:#006fba;"/>
+<rect class="seat15" id="Seat15" x="8704" y="7928.05" width="384" height="190.946" style="fill:#006fba;"/>
+<rect class="seat16" id="Seat16" x="9408" y="7928.58" width="384" height="190.946" style="fill:#006fba;"/>
+<rect class="seat17" id="Seat17" x="9856" y="7927.53" width="384" height="192" style="fill:#006fba;"/>
+<rect class="seat18" id="Seat18" x="10304" y="7928.58" width="384" height="190.946" style="fill:#006fba;"/>
+<rect class="seat19" id="Seat19" x="10752" y="7928.58" width="384" height="190.946" style="fill:#006fba;"/>
+<rect class="seat20" id="Seat20" x="11200" y="7929.05" width="384" height="190.946" style="fill:#006fba;"/>
+<rect class="seat21" id="Seat21" x="8158.58" y="8312.05" width="384" height="190.946" style="fill:#006fba;"/>
+<rect class="seat22" id="Seat22" x="8606.58" y="8311" width="384" height="192" style="fill:#006fba;"/>
+<rect class="seat23" id="Seat23" x="9054.58" y="8312.05" width="384" height="190.946" style="fill:#006fba;"/>
+<rect class="seat24" id="Seat24" x="9502.58" y="8313.05" width="384" height="190.946" style="fill:#006fba;"/>
+<rect class="seat25" id="Seat25" x="9950.58" y="8312.05" width="384" height="190.946" style="fill:#006fba;"/>
+</g></svg>

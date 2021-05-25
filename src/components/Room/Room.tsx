@@ -1,7 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
 import { panOptions } from '../PanWrapper/panOptions';
-import backgroundImage from '../../assets/foyer-0.0.2.png';
+import backgroundImage from '../../assets/blank-6000.png';
+// import {ReactComponent as BackgroundSvg} from '../../assets/foyer-background-svg-test.svg';
+import {ReactComponent as BackgroundSvg} from '../../assets/foyer-collide-background-6000.svg';
 
 /* fixed size won't work, because when scale is 1 there will be room to pan; but the plugin won't allow it because scale is 1. 
 the fix is to set the size of the react-transform-component and react-transform-element exlusively (see App.css) */
@@ -20,10 +22,24 @@ const Background = styled.div`
   pointer-events: none;
 `
 
+const Divstyles = styled.iframe`
+  background-color: #f00;
+  position: absolute;
+  width: 1600px;
+  height: 900px;
+  left: 3968px;
+  top: 4540px;
+`
+
 export const Room:React.FC = ({children}) => {
   return (
     <RoomContainer>
-      <Background />
+      <Background>
+        <BackgroundSvg />
+      </Background>
+      <>
+        <Divstyles src="https://www.youtube.com/embed/ldF_RlOhRf4" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen />
+      </>
       {children}
     </RoomContainer>
   )
