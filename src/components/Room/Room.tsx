@@ -25,10 +25,10 @@ const Background = styled.div`
 const Divstyles = styled.iframe`
   background-color: #f00;
   position: absolute;
-  width: 4672px;
-  height: 2944px;
-  left: 6912px;
-  top: 4032px;
+  width: 1600px;
+  height: 900px;
+  left: 3968px;
+  top: 4540px;
 `
 
 export const Room:React.FC = ({children}) => {
