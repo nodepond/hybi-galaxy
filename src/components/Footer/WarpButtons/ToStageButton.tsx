@@ -1,16 +1,25 @@
 import React, { useCallback } from 'react';
 import { Button } from '../../common/Buttons/Button';
-import {FaMicrophoneSlash, FaMicrophone} from 'react-icons/fa'
 import { useLocalStore } from '../../../store/LocalStore';
+import { panOptions } from '../../PanWrapper/panOptions'
 
 export const ToStageButton = () => {
 
-  const toggleMute = useLocalStore(store => store.toggleMute)
-  const mute = useLocalStore(store => store.mute)
+  const pan = useLocalStore(store => store.pan)
+  const scale = useLocalStore(store => store.scale)
+  const panChange = useLocalStore(store => store.onPanChange)
+  const setLocalPosition = useLocalStore(store => store.setLocalPosition)
 
-  if(mute) {
-    return <Button type="danger" onClick={toggleMute}><FaMicrophoneSlash/>TO STAGE BUTTON</Button>
-  } else {
-    return <Button type="secondary" onClick={toggleMute}><FaMicrophone/>TO STAGE BUTTON</Button>
-  }
+  const onStageButtonPressed = () => {
+    console.log('here')
+    // TODO: updates store, but the TransformWrapper seem to stay unaffected..
+		panChange({
+      scale: 0.3,
+      positionX: -226,
+      positionY: -840
+    })
+    setLocalPosition(panOptions.user.initialPosition)
+	}
+
+  return <Button onClick={onStageButtonPressed}>TO STAGE BUTTON</Button>
 }

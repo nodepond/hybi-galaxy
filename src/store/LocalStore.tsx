@@ -51,7 +51,7 @@ export const useLocalStore = create<Store>((set,get) => {
       return path.isPointInFill(myPoint)
     })
     // const isHitting = zxcIterable.map()
-    console.log('isHitting', isHitting)
+    // console.log('isHitting', isHitting)
     return isHitting.includes(true)
   }
 
@@ -177,6 +177,9 @@ export const useLocalStore = create<Store>((set,get) => {
   const setMyID = (id:string) => set({id:id})
 
   const onPanChange = ({scale,positionX, positionY}) => {
+    console.log('onPanChange scale', scale)
+    console.log('onPanChange positionX', positionX)
+    console.log('onPanChange positiony', positionY)
     const viewport = {
       x: panOptions.room.size.x * scale,
       y: panOptions.room.size.y * scale,
