@@ -76,7 +76,7 @@ export const useConferenceStore = create<ConferenceStore>((set,get) => {
 
   const initialState = {
     conferenceObject:undefined,
-    conferenceName: process.env.REACT_APP_DEMO_SESSION || "chatmosphere",
+    conferenceName: process.env.REACT_APP_DEMO_SESSION || "boatpeopleproject",
     isJoined:false,
     users:{},
     displayName:"Friendly Sphere",
