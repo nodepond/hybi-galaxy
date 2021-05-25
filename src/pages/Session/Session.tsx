@@ -4,6 +4,10 @@ import { Info } from '../../components/common/Info/Info'
 import { Footer } from '../../components/Footer/Footer'
 import { JoinButton } from '../../components/Footer/JoinButton/JoinButton'
 import { MuteButton } from '../../components/Footer/MuteButton/MuteButton'
+import { ToStageButton } from '../../components/Footer/WarpButtons/ToStageButton'
+import { ToFoyerButton } from '../../components/Footer/WarpButtons/ToFoyerButton'
+import { Spacer } from '../../components/Footer/Spacer'
+
 import { Header } from '../../components/Header/Header'
 import JitsiConnection from '../../components/JitsiConnection/JitsiConnection'
 import { Localuser } from '../../components/Localuser/Localuser'
@@ -34,8 +38,12 @@ export const Session = () => {
 				</Room>
 			</PanWrapper>
 			<Footer>
-				<JoinButton joined={true} />
+				<ToFoyerButton />
+				<ToStageButton />
+				<Spacer />
 				<MuteButton />
+				<Spacer />
+				<JoinButton joined={true} />
 			</Footer>
 		</React.Fragment>
 	)

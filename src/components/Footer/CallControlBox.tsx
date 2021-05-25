@@ -3,12 +3,11 @@ import styled from 'styled-components';
 export const CallControlBox = styled.div`
 position: fixed;
 bottom: 20px;
-left: 50%;
+right: 20px;
 display: flex;
-flex-direction: row;
+flex-direction: column;
 align-items: center;
-transform: translateX(-50%);
 & > button {
-  margin: 0 5px;
+  margin: 2px 5px;
 }
 `
