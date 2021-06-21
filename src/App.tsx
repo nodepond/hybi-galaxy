@@ -5,6 +5,7 @@ import styled from 'styled-components'
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom"
 import { Home } from "./pages/Home/Home"
 import { Enter } from "./pages/Enter/Enter"
+import { Speaker } from "./pages/Speaker/Speaker"
 import { Beamer } from "./pages/Beamer/Beamer"
 import { Session } from "./pages/Session/Session"
 
@@ -21,19 +22,18 @@ function App() {
     <AppContainer>
       <Router>
         <Switch>
-          {/* TODO: add a special route for beamer-view (and other admin-routes) */}
-          <Route path="/beamer/:id">
-            <Beamer />
-          </Route>
           <Route path="/enter/:id">
             <Enter />
           </Route>
-
           <Route path="/session/:id">
-            {/* TODO: redirect to "/enter" if this the first time the user in this conference */}
             <Session />
           </Route>
-
+          <Route path="/speaker/:id">
+            <Speaker />
+          </Route>
+          <Route path="/beamer/:id">
+            <Beamer />
+          </Route>
           <Route path="/">
             <Header>Hybi-Galaxy</Header>
             <Home />

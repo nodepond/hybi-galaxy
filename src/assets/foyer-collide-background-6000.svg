@@ -7,7 +7,7 @@
 <rect class="room1" x="1536" y="1664" width="2944" height="1152" style="fill:#ffb101;"/>
 <rect class="room2" x="1280" y="4096" width="768" height="768" style="fill:#ffb101;"/>
 <rect class="room3" x="1280" y="5248" width="768" height="752" style="fill:#ffb101;"/>
-<rect class="room4" x="0" y="4096" width="1152" height="1904" style="fill:#ffb101;"/>
+<rect class="speaker" x="0" y="4096" width="1152" height="1904" style="fill:#ffb101;"/>
 <rect class="seat1" id="Seat1" x="3645.91" y="5587.84" width="184.281" height="92.141" style="fill:#006fba;"/>
 <rect id="Seat2" x="3860.91" y="5587.84" width="184.281" height="92.141" style="fill:#006fba;"/>
 <rect id="Seat3" x="4075.9" y="5584.51" width="184.281" height="91.635" style="fill:#006fba;"/>

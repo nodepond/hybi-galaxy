@@ -149,6 +149,9 @@ export const useLocalStore = create<Store>((set,get) => {
     else if (isHittingRoom(newPosition, "seat25")) {
       set({room: 'seat-25'})
     }
+    else if (isHittingRoom(newPosition, "speaker")) {
+      set({room: 'speaker'})
+    }
     else {
       set({room: 'default'})
     }
