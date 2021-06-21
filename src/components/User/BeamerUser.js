@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect } from 'react';
+import React, { useCallback } from 'react';
 import { useConferenceStore } from '../../store/ConferenceStore';
 import { VideoTrack } from './VideoTrack';
 
