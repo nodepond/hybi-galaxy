@@ -37,7 +37,7 @@ const CenterContainer = styled.div`
 `
 
 export const Enter = () => {
-	const { id } = useParams() //get Id from url, should error check here I guess
+	const { id } = useParams() // get Id from url, should error check here I guess
 	const setConferenceName = useConferenceStore(store => store.setConferenceName)
 
 	React.useEffect(
