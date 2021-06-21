@@ -17,7 +17,32 @@ The frontent uses / relies on lib-litsi-meet: https://jitsi.github.io/handbook/d
 
 Find it in /public/lib/
 
-Old Readme:
+## Setup
+
+### Digital Foyer
+
+Space, where everyone enters. People can move around and watch live-stream. There arealso 1-1 seats.
+
+ROOT/enter
+
+or
+
+ROOT/session/SESSIONNAME
+
+### Beamer View
+
+Special view for back-projection on stage, where all participant video views are projected in a grid.
+
+ROOT/beamer/SESSIONNAME
+
+### Speaker View
+
+Special view for speacker on stage, where only participant on a speaker-vield are shown in a grid-like view.
+
+ROOT/speaker/SESSIONNAME
+
+
+# Old Readme:
 
 <div align="center" style="border:0 solid #efefef; background-color: #fff; padding:0; margin:0 0 50px 0; color:#333;">
 <h1 style="border-bottom:none; margin-bottom:0;">😽 Chatmosphere</h1>
