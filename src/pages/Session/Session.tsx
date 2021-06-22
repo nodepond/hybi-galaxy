@@ -38,6 +38,8 @@ export const Session = () => {
 				</Room>
 			</PanWrapper>
 			<Footer>
+				<a href="/speaker/bpp">Speaker View</a>
+				<a href="/beamer/bpp">Beamer View</a>
 				<ToFoyerButton />
 				<ToStageButton />
 				<Spacer />
