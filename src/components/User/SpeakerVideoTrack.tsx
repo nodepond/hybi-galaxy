@@ -10,6 +10,9 @@ const Video = styled.video`
   display: grid;
   place-items: center;
   background: lightpink;
+  width: 100%;
+  object-fit: cover;
+  transform: scaleX(-1);
 `
 
 export const SpeakerVideoTrack:React.FC<{id:number}> = React.memo(({id}) => {

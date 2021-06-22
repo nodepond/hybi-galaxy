@@ -12,23 +12,22 @@ const SpeakerUsersContainer = styled.div`
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
 `
 
-// TODO: render empty state
-
 export const SpeakerUsers = () => {
-  const {users} = useConferenceStore()
+  const { users } = useConferenceStore()
   console.log('users', users)
+  const usersArray = Object.entries(users)
+  const speakers = usersArray.filter(user => {
+    return user[1].room === 'speaker'
+  })
   return (
-    <>
-    {Object.entries(users).map(user => {
-      console.log('user', user[1].room)
-      // console.log('user', user[0].room)
-      return(
-        <SpeakerUsersContainer>
-          { user[1].room === 'speaker' && <><SpeakerUser key={user[0]} user={user[1]} id={user[0]}/>
-          </> }
-        </SpeakerUsersContainer>
-      )
-    })}
-    </>
+    speakers.length === 0 ? 
+    <div>No Speakers available</div> :
+    <SpeakerUsersContainer>
+      {speakers.map(user => {
+        return(
+          <SpeakerUser key={user[0]} user={user[1]} id={user[0]}/>
+        )}
+      )}
+    </SpeakerUsersContainer>
   )
 }
