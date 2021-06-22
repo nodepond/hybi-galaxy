@@ -1,14 +1,12 @@
-import React, { useCallback } from 'react';
-import { useConferenceStore } from '../../store/ConferenceStore';
-import { VideoTrack } from './VideoTrack';
+import React from 'react';
+// import { useConferenceStore } from '../../store/ConferenceStore';
+import { SpeakerVideoTrack } from './SpeakerVideoTrack';
 
 export const SpeakerUser = ({id, user}) => {
-  const myRoom = useConferenceStore(useCallback(store => store.users[id]['room'], [id]))
-
+  // const myRoom = useConferenceStore(useCallback(store => store.users[id]['room'], [id]))
   return(
-    <div className="userContainer" >
-      <VideoTrack id={id} />
-      <div>{myRoom}</div>
+    <div className="speakerContainer" >
+      <SpeakerVideoTrack id={id} />
     </div>
   )
 }
