@@ -11,6 +11,16 @@ To deploy...
 3a. (connect to netlify, only first time) `netlify init`
 3b. `netlify deploy --prod`
 
+### Troubleshooting
+
+Netlify does not know, how to handle react-router URL.
+
+Here is the fix: 
+https://sung.codes/blog/2018/12/18/page-not-found-on-netlify-with-react-router/
+https://docs.netlify.com/routing/redirects/rewrites-proxies/#history-pushstate-and-single-page-apps
+
+-> Use _redirects file
+
 ## Useful infos
 
 The frontent uses / relies on lib-litsi-meet: https://jitsi.github.io/handbook/docs/dev-guide/dev-guide-ljm-api
