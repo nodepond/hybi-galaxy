@@ -34,12 +34,12 @@ const Divstyles = styled.iframe`
 `
 
 const LiveStream = styled.div`
-  background-color: #f00;
+  background-color: #f0f;
   position: absolute;
-  width: 1600px;
-  height: 900px;
-  left: 3968px;
-  top: 4540px;
+  width: 2030px;
+  height: 1275px;
+  left: 3456px;
+  top: 326px;
 `
 
 export const Room:React.FC = ({children}) => {
