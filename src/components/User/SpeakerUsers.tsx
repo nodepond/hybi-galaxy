@@ -14,14 +14,13 @@ const SpeakerUsersContainer = styled.div`
 
 export const SpeakerUsers = () => {
   const { users } = useConferenceStore()
-  console.log('users', users)
   const usersArray = Object.entries(users)
   const speakers = usersArray.filter(user => {
     return user[1].room === 'speaker'
   })
   return (
     speakers.length === 0 ? 
-    <div>No Speakers available</div> :
+    <div>Aktuell keine Sprecher*innen</div> :
     <SpeakerUsersContainer>
       {speakers.map(user => {
         return(
