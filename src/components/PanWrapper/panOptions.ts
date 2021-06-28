@@ -33,9 +33,9 @@ export const transformWrapperOptions: PropsList = {
   positionY: 0,
   options: {
     centerContent: false,
-    limitToBounds: true,
-    limitToWrapper: true,
-    minScale: 0.3,
+    limitToBounds: false,
+    limitToWrapper: false,
+    minScale: 0.1,
     maxScale: 3,
     // maxPositionX:500, maxPositionY:500,
     // minPositionX:0, minPositionY:0
