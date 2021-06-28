@@ -27,9 +27,8 @@ const DragWrapper = ({initPos={x:0,y:0}, children, callback=(pos)=>null, current
     e.preventDefault()
     e.stopPropagation()
     if(element.current !== undefined) {
-      const xPos = Math.trunc((e.clientX) / currentScale - clickDelta.current.x)
-      const yPos = Math.trunc((e.clientY) / currentScale - clickDelta.current.y)
-      // element?.current?.setAttribute('style', `left:${xPos}px; top:${yPos}px`)
+      const xPos = Math.trunc(e.clientX / currentScale - clickDelta.current.x)
+      const yPos = Math.trunc(e.clientY / currentScale - clickDelta.current.y)
       element?.current?.setAttribute('style', `transform:translate(${xPos}px, ${yPos}px);`)
       callback({x:xPos, y:yPos})
     }
@@ -46,14 +45,13 @@ const DragWrapper = ({initPos={x:0,y:0}, children, callback=(pos)=>null, current
     const boundingRect = e.currentTarget.getBoundingClientRect()
     clickDelta.current = {
       x: Math.trunc((e.clientX - boundingRect.x + panOffset.x) / currentScale),
-      y: Math.trunc((e.clientY - boundingRect.y + panOffset.y) / currentScale),
+      y: Math.trunc((e.clientY - boundingRect.y + panOffset.y) / currentScale)
     }
     document.addEventListener("mouseup", onUp)
     document.addEventListener("mousemove", onDrag)
   }
 
   useEffect(() => {
-    // element?.current?.setAttribute('style', `left:${initPos.x}px; top:${initPos.y}px`)
     element?.current?.setAttribute('style', `transform:translate(${initPos.x}px, ${initPos.y}px);`)
     // this is by purpose & needed to set the pos once only initially
   // eslint-disable-next-line react-hooks/exhaustive-deps

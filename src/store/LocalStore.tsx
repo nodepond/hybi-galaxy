@@ -186,20 +186,9 @@ export const useLocalStore = create<Store>((set,get) => {
   const setMyID = (id:string) => set({id:id})
 
   const onPanChange = ({scale,positionX, positionY}) => {
-    console.log('onPanChange scale', scale)
-    console.log('onPanChange positionX', positionX)
-    console.log('onPanChange positiony', positionY)
-    const viewport = {
-      x: panOptions.room.size.x * scale,
-      y: panOptions.room.size.y * scale,
-    }
-    const panLimit = {
-      x: viewport.x - window.innerWidth,
-      y: viewport.y - window.innerHeight,
-    }
     const panPosition = {
-      x: Math.max(-panLimit.x, Math.min(0, positionX)),
-      y: Math.max(-panLimit.y, Math.min(0, positionY)),
+      x: positionX,
+      y: positionY
     }
     set({scale:scale, pan:panPosition})
   }
