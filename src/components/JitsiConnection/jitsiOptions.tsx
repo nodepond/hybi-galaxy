@@ -1,7 +1,4 @@
 // SETTINGS - these are Connection and Room Options for the Jitsi lib
-
-import { PropsList } from "react-zoom-pan-pinch/dist/store/interfaces/propsInterface"
-
 export interface IJitsiInitOptions {
   disableAudioLevels?: boolean
   disableSimulcast?: boolean
@@ -71,24 +68,3 @@ export const getConnectionOptions = (): object => {
 
   return serverConfig.connectionOptions
 }
-
-// export const transformWrapperOptions: PropsList = {
-//   wheel: { step: 50 },
-//   scale: 1,
-//   //center the window, considering the size of the user view
-//   defaultPositionX: -localTrackOptions.user.initialPosition.x+(window.innerWidth-localTrackOptions.user.size.x)/2,
-//   defaultPositionY: -localTrackOptions.user.initialPosition.y+(window.innerHeight-localTrackOptions.user.size.y)/2,
-//   positionX: 0,
-//   positionY: 0,
-//   options: {
-//     centerContent: false,
-//     limitToBounds: true,
-//     limitToWrapper: true,
-//     minScale: 0.2,
-//     // maxPositionX:10000, maxPositionY:10000,
-//     // minPositionX:0, minPositionY:0
-//   },
-//   // scalePadding:{animationTime:10},
-//   pan: { velocityEqualToMove: true },
-//   pinch: { disabled: true },
-// }

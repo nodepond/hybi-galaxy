@@ -1,4 +1,4 @@
-import { PropsList } from "react-zoom-pan-pinch/dist/store/interfaces/propsInterface"
+// import { PropsList } from "react-zoom-pan-pinch/dist/store/interfaces/propsInterface"
 
 export const panOptions = {
   room: { size: { x: 6000, y: 6000 } },
@@ -11,11 +11,7 @@ export const panOptions = {
     },
 }
 
-// spawn point eingang: 600 x 3400
-// spawn point foyer: tba
-// spawn point bühne main: tbs
-
-export const transformWrapperOptions: PropsList = {
+export const transformWrapperOptions = {
   wheel: { step: 50 },
   // scale: 1.0,
   // scale: 0.5,

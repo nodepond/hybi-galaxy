@@ -11,6 +11,8 @@ export const PanWrapper = ({children}) => {
 
   const onPanChange = useLocalStore(panChange)
   const setLocalPosition = useLocalStore(setPos)
+  const pan = useLocalStore(store => store.pan)
+  const scale = useLocalStore(store => store.scale)
 
   // for whatever reson that transform to point does not work properly...
   const transformData = {
@@ -24,31 +26,46 @@ export const PanWrapper = ({children}) => {
   // const throttlePan = useCallback(throttle(onPanChange, 200),[])
   // const throttleSendPos = useCallback(throttle(setLocalPosition, 200),[])
   
-  useEffect(() => {
-    onPanChange({scale:transformWrapperOptions.scale,positionX:transformWrapperOptions.defaultPositionX,positionY:transformWrapperOptions.defaultPositionY})
-    setLocalPosition(panOptions.user.initialPosition)
-    // throttlePan({scale:transformWrapperOptions.scale,positionX:transformWrapperOptions.defaultPositionX,positionY:transformWrapperOptions.defaultPositionY})
-    // throttleSendPos(panOptions.user.initialPosition)
-  },[])
+  // useEffect(() => {
+  //   onPanChange({scale:transformWrapperOptions.scale,positionX:transformWrapperOptions.defaultPositionX,positionY:transformWrapperOptions.defaultPositionY})
+  //   setLocalPosition(panOptions.user.initialPosition)
+  //   // throttlePan({scale:transformWrapperOptions.scale,positionX:transformWrapperOptions.defaultPositionX,positionY:transformWrapperOptions.defaultPositionY})
+  //   // throttleSendPos(panOptions.user.initialPosition)
+  // },[])
 
   return (
     <TransformWrapper 
-      {...transformWrapperOptions}
-      onZoomChange={onPanChange}
-      onPanning={onPanChange}
-      onPinchingStop={onPanChange}
+      // {...transformWrapperOptions}
+      onPanning={(e) => {
+        console.log('onPanning',e)
+        onPanChange(e.state)
+      }}
+      onZoom={(e) => {
+        console.log('onZoom',e)
+        onPanChange(e.state)
+      }}
+      // onPinchingStop={onPanChange}
+      centerOnInit={true}
+      limitToBounds={false}
+      // limitToWrapper={false}
+      minScale={0.1}
+      maxScale={3}
+      initialScale={0.3}
+      initialPositionX={-600 * 0.3 + 500}
+      initialPositionY={-3700 * 0.3 + 500}
     >
-      {({ zoomIn, zoomOut, resetTransform, setTransform, ...rest }) => (
-          <React.Fragment>
-            <div className="tools">
-              <button onClick={zoomIn}>+</button>
-              <button onClick={zoomOut}>-</button>
-              {/* <button onClick={() => setTransform(transformData)}>x</button> */}
-            </div>
-      <TransformComponent>
-        {children}
-      </TransformComponent>
-      </React.Fragment>)}
+      {({ zoomIn, zoomOut, zoomToElement, ...rest }) => (
+        <React.Fragment>
+          <div className="tools">
+            <button onClick={() => zoomIn(0.5)}>+</button>
+            <button onClick={() => zoomOut(0.5)}>-</button>
+            <button onClick={() => zoomToElement('FoyerView', 1500)}>Foyer</button>
+            <button onClick={() => zoomToElement('LiveStreamView', 1500)}>Stage</button>
+          </div>
+          <TransformComponent>
+            {children}
+          </TransformComponent>
+        </React.Fragment>)}
     </TransformWrapper>
   )
 }

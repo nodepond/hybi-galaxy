@@ -8,9 +8,10 @@ import {ReactComponent as BackgroundSvg} from '../../assets/foyer-collide-backgr
 import AmazonIVSVideoStream from '../VideoStream/AmazonIVSVideoStream'
 
 /* fixed size won't work, because when scale is 1 there will be room to pan; but the plugin won't allow it because scale is 1. 
-the fix is to set the size of the react-transform-component and react-transform-element exlusively (see App.css) */
+the fix is to set the size of the react-transform-component and react-transform-element exlusively (see GlobalStyles.tsx) */
 
 const RoomContainer = styled.div`
+  position: absolute;
   width:${panOptions.room.size.x}px;height:${panOptions.room.size.y}px;
   box-sizing: border-box;
   display:flex;
@@ -41,6 +42,15 @@ const LiveStream = styled.div`
   left: 3456px;
   top: 326px;
 `
+const Foyer = styled.div`
+  background-color: none;
+  position: absolute;
+  width: 2730px;
+  height: 1800px;
+  left: 256px;
+  top: 2426px;
+  z-index: -1;
+`
 
 export const Room:React.FC = ({children}) => {
   return (
@@ -49,9 +59,10 @@ export const Room:React.FC = ({children}) => {
         <BackgroundSvg />
       </Background>
       <>
-        <LiveStream>
+        <LiveStream id={"LiveStreamView"}>
           <AmazonIVSVideoStream />
         </LiveStream>
+        <Foyer id={"FoyerView"} />
       </>
       {children}
     </RoomContainer>
