@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 // import * as config from '../../config';
 
-const PLAYBACK_URL = process.env.LIVE_STREAM_URL;
+const PLAYBACK_URL = process.env.REACT_APP_LIVE_STREAM_URL;
 
 class AmazonIVSVideoStream extends Component {
   constructor() {
