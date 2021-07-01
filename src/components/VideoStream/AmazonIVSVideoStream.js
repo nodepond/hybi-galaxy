@@ -75,6 +75,9 @@ class AmazonIVSVideoStream extends Component {
     player.setAutoplay(true);
     player.load(PLAYBACK_URL);
     player.setVolume(0.5);
+
+    // save reference to player. Call it with i.e. window.player.setVolume(1)
+    window.player = player
   }
 
   render() {
