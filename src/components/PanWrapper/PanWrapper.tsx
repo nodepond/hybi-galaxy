@@ -59,8 +59,20 @@ export const PanWrapper = ({children}) => {
           <div className="tools">
             <button onClick={() => zoomIn(0.5)}>+</button>
             <button onClick={() => zoomOut(0.5)}>-</button>
-            <button onClick={() => zoomToElement('FoyerView', 1500)}>Foyer</button>
-            <button onClick={() => zoomToElement('LiveStreamView', 1500)}>Stage</button>
+            <button onClick={() => {
+              zoomToElement('FoyerView', 1500)
+              const x = 1756 + (Math.random()-0.5) * 200
+              const y = 3326 + (Math.random()-0.5) * 200
+              document.getElementById('DragElement')?.setAttribute('style', `transform:translate(${x}px, ${y}px);`)
+              setLocalPosition({ x: x, y: y})
+            }}>Foyer</button>
+            <button onClick={() => {
+              zoomToElement('LiveStreamView', 1500)
+              const x = 4256 + (Math.random()-0.5) * 200
+              const y = 26 + (Math.random()-0.5) * 200
+              document.getElementById('DragElement')?.setAttribute('style', `transform:translate(${x}px, ${y}px);`)
+              setLocalPosition({ x: x, y: y})
+            }}>Stage</button>
           </div>
           <TransformComponent>
             {children}
