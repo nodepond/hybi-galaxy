@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
+import { findDOMNode } from 'react-dom'
 import PropTypes from 'prop-types';
 // import * as config from '../../config';
 import ReactPlayer from 'react-player'
 import styled from 'styled-components';
+import screenfull from 'screenfull'
 
 const PLAYBACK_URL = process.env.REACT_APP_LIVE_STREAM_URL;
 
@@ -43,7 +45,11 @@ class ReactPlayerVideoStream extends Component {
         style={videoStyle}
         width='100%'
         height='100%'
-        url={PLAYBACK_URL}>
+        url={PLAYBACK_URL}
+        onClick={() => {
+          console.log('click click')
+          screenfull.request(findDOMNode(this))
+        }}>
       </ReactPlayer>
     )
   }
