@@ -1,8 +1,19 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 // import * as config from '../../config';
+import styled from 'styled-components';
 
 const PLAYBACK_URL = process.env.REACT_APP_LIVE_STREAM_URL;
+
+const VideoView = styled.video`
+  display:flex;
+  background: red;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: fill;
+`
 
 class AmazonIVSVideoStream extends Component {
   constructor() {
@@ -84,7 +95,7 @@ class AmazonIVSVideoStream extends Component {
     return (
       <div className="player-wrapper">
         <div className="aspect-169 pos-relative full-width full-height">
-          <video id="video-player" className="video-elem pos-absolute full-width" playsInline></video>
+          <VideoView id="video-player" className="video-elem pos-absolute full-width" playsInline></VideoView>
         </div>
       </div>
     )
