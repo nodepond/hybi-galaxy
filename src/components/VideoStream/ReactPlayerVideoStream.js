@@ -1,22 +1,8 @@
-import React, { Component } from 'react';
-import { findDOMNode } from 'react-dom'
-import PropTypes from 'prop-types';
-// import * as config from '../../config';
+import React, { Component } from 'react'
 import ReactPlayer from 'react-player'
-import styled from 'styled-components';
 import screenfull from 'screenfull'
 
 const PLAYBACK_URL = process.env.REACT_APP_LIVE_STREAM_URL;
-
-const VideoView = styled.video`
-  display:flex;
-  background: red;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: fill;
-`
 
 const videoStyle = {
   display: 'flex',
@@ -28,27 +14,24 @@ const videoStyle = {
 };
 
 class ReactPlayerVideoStream extends Component {
-  constructor() {
-    super ();
-    this.state = {
-      maxMetaData: 10,
-      metaData: [],
-    }
-  }
-
-  componentDidMount() {
+  constructor(props) {
+    super(props)
+    this.videoRef = React.createRef()
   }
 
   render() {
     return (
-      <ReactPlayer 
+      <ReactPlayer
+        id='VideoStream'
         style={videoStyle}
         width='100%'
         height='100%'
         url={PLAYBACK_URL}
+        ref={(video) => { this.videoRef = video }}
         onClick={() => {
-          console.log('click click')
-          screenfull.request(findDOMNode(this))
+          if (screenfull.isEnabled) {
+            screenfull.request(this.videoRef.wrapper)
+          }
         }}>
       </ReactPlayer>
     )
