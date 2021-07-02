@@ -18,7 +18,6 @@ const VideoView = styled.video`
 
 const videoStyle = {
   display: 'flex',
-  background: 'red',
   top: '0',
   left: '0',
   width: '100%',
