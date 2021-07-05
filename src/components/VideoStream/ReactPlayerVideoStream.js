@@ -11,6 +11,13 @@ const videoStyle = {
   width: '100%',
   height: '100%',
   objectFit: 'fill'
+}
+
+const fullscreenButtonStyle = {
+  position: 'absolute',
+  right: '0',
+  bottom: '0',
+  background: 'red'
 };
 
 class ReactPlayerVideoStream extends Component {
@@ -21,8 +28,10 @@ class ReactPlayerVideoStream extends Component {
 
   render() {
     return (
+      <>
       <ReactPlayer
         id='VideoStream'
+        playing={true}
         style={videoStyle}
         width='100%'
         height='100%'
@@ -32,8 +41,18 @@ class ReactPlayerVideoStream extends Component {
           if (screenfull.isEnabled) {
             screenfull.request(this.videoRef.wrapper)
           }
-        }}>
+        }}
+        >
       </ReactPlayer>
+      {/* <button 
+            style={fullscreenButtonStyle}
+            onClick={() => {
+              if (screenfull.isEnabled) {
+                screenfull.request(this.videoRef.wrapper)
+              }
+            }}
+          >Fullscreen</button> */}
+      </>
     )
   }
 }

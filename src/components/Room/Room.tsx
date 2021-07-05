@@ -61,7 +61,7 @@ export const Room:React.FC = ({children}) => {
       </Background>
       <>
         <LiveStream id={"LiveStreamView"}>
-          <ReactPlayerVideoStream />
+          <AmazonIVSVideoStream />
         </LiveStream>
         <Foyer id={"FoyerView"} />
       </>
