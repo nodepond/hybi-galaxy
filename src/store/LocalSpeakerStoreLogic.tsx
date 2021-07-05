@@ -25,10 +25,10 @@ export const LocalSpeakerStoreLogic = () => {
     if(conference?.myUserId()) setMyID(conference.myUserId())
   },[conference, setMyID])
   
-  // TODO: delete init of audio and video track, if we see, that are actually really unneeded
+  // just init of needed tracks
   useEffect(() => {
       jsMeet
-        ?.createLocalTracks({ devices: [ 'audio', 'video' ] }, true)
+        ?.createLocalTracks({ devices: [ 'audio' ] }, true)
         .then(tracks => {setLocalTracks(tracks)})
         .catch(error => {
           console.log(error)

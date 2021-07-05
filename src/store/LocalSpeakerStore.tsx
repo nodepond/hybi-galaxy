@@ -55,6 +55,8 @@ export const useLocalSpeakerStore = create<Store>((set,get) => {
 
   const setMyID = (id:string) => set({id:id})
 
+  // Init user in speaker-room, so that speacker-room always gets stage-audio
+  set({room: 'speaker'})
 
   return {
   ...state,
