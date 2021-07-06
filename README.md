@@ -51,6 +51,39 @@ Special view for speacker on stage, where only participant on a speaker-vield ar
 
 ROOT/speaker/SESSIONNAME
 
+# Stage view
+
+We use a separate jitsi-server to broadcasting the stage. It is at the time of writing the best compromise we can get to ensure good audio-quality and low-latency stream, because we want to to teh webRTC route, instead of RTMP. (RTMP always gave sus some seconds delay, no matter what we tried, and we tried a lot. It looks, that by the end of the yeat, braodcasting via webRTC will be much more supported, because the community (i.e. OBS-community) discusses this topic a lot at the moment and new techologies are build, like WHIP.
+
+To ensure a good audio-quality we did the following things
+
+1. Setup an own server, that run an jitsi-instance, that will not get disturbed by the "regular visitors", but will only handle delivering stage audio-and video to foyer participants (that itselb will not braodcast any video or audio)
+
+2. Edited the following settings at the jitsi-server: `/etc/jitsi/meet/<domain>-config.js`
+
+```
+    enableNoAudioDetection: false,
+    enableNoisyMicDetection: false,
+    
+    opusMaxAverageBitrate: 510000,
+    enableOpusRed: true,
+
+    enableLipSync: false,
+
+    disableAP: true,
+    disableAEC: true,
+    disableNS: true,
+    disableAGC: true,
+    disableHPF: true,
+    stereo: true,
+```
+
+Do not forget to restart after editing
+
+```
+# Restart Services
+$ /etc/init.d/jicofo restart && /etc/init.d/jitsi-videobridge2 restart && /etc/init.d/prosody restart
+```
 
 # Old Readme:
 
