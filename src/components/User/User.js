@@ -17,12 +17,18 @@ export const User = ({id, user}) => {
     calculateVolume(id)
   },[id, calculateVolume, myPos])
 
+  let opacity = 100
+  // don't draw special users
+  if (id === 'speaker' || id === 'beamer') {
+    opacity = 0
+  }
+
   return(
-    <div style={{position:'absolute', left:`${myPos.x}px`, top:`${myPos.y}px`}} className="userContainer" >
+    <div style={{position:'absolute', left:`${myPos.x}px`, top:`${myPos.y}px`, opacity: `${opacity}`}} className="userContainer" >
       <VideoTrack id={id} />
       <ReloadHint />
       <AudioTrack id={id} volume={myVolume} />
-      <NameTag>{user?.user?._displayName || 'Friendly Sphere'}</NameTag>
+      <NameTag>{user?.user?._displayName || 'Zuschauer*in'}</NameTag>
       <div>Volume {Math.round(myVolume * 11)}</div>
       <div>Room {myRoom}</div>
       {isMute && <MuteIndicator>🤭</MuteIndicator>}
