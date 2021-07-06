@@ -7,6 +7,7 @@ import {ReactComponent as BackgroundSvg} from '../../assets/foyer-collide-backgr
 
 import AmazonIVSVideoStream from '../VideoStream/AmazonIVSVideoStream'
 import ReactPlayerVideoStream from '../VideoStream/ReactPlayerVideoStream'
+import JitsiStageVideoStream from '../VideoStream/JitsiStageVideoStream'
 
 /* fixed size won't work, because when scale is 1 there will be room to pan; but the plugin won't allow it because scale is 1. 
 the fix is to set the size of the react-transform-component and react-transform-element exlusively (see GlobalStyles.tsx) */
@@ -61,7 +62,7 @@ export const Room:React.FC = ({children}) => {
       </Background>
       <>
         <LiveStream id={"LiveStreamView"}>
-          <AmazonIVSVideoStream />
+          <JitsiStageVideoStream />
         </LiveStream>
         <Foyer id={"FoyerView"} />
       </>
