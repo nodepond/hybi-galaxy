@@ -53,7 +53,7 @@ export const useLocalBeamerStore = create<Store>((set,get) => {
     newState.video=undefined
   })
 
-  const setMyID = (id:string) => set({id:id})
+  const setMyID = (id:string) => set({id:'beamer'})
 
 
   return {

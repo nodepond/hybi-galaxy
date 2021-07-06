@@ -38,9 +38,8 @@ export const useLocalStore = create<Store>((set,get) => {
 
   const isHittingRoom = (newPosition, roomname = "room1") => {
     let rootSvg = document.getElementById('RootSvg')
-    let zxc = document.getElementsByClassName(roomname)
-    // const zxcIterable = Array.from(zxc)
-    const isHitting = Array.prototype.map.call(zxc, path => {
+    let svg = document.getElementsByClassName(roomname)
+    const isHitting = Array.prototype.map.call(svg, path => {
       // please notice, that right at the moment isPointInFill() with DOMPoints only works in safari right now. This is why we use the version that inits with SVGPoint. Works on most modern browsers atm.
       // return path.isPointInFill(new DOMPoint(newPosition.x, newPosition.y))
 
@@ -50,8 +49,6 @@ export const useLocalStore = create<Store>((set,get) => {
       myPoint.y = newPosition.y + 100
       return path.isPointInFill(myPoint)
     })
-    // const isHitting = zxcIterable.map()
-    // console.log('isHitting', isHitting)
     return isHitting.includes(true)
   }
 
@@ -203,10 +200,6 @@ export const useLocalStore = create<Store>((set,get) => {
   onPanChange
 }
 })
-
-
-// const unsub1 = useLocalStore.subscribe((i) => globalThis.globalStore = i)
-
 
 if (process.env.NODE_ENV === "development") {
   let root = document.createElement('div');

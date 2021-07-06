@@ -53,9 +53,9 @@ export const useLocalSpeakerStore = create<Store>((set,get) => {
     newState.video=undefined
   })
 
-  const setMyID = (id:string) => set({id:id})
+  const setMyID = (id:string) => set({id:'speaker'})
 
-  // Init user in speaker-room, so that speacker-room always gets stage-audio
+  // Init user in speaker-room, so that speaker-room always gets stage-audio
   set({room: 'speaker'})
 
   return {

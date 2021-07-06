@@ -18,15 +18,6 @@ export const Beamer = () => {
 			<JitsiConnection />
 			<LocalBeamerStoreLogic />
 			<BeamerUsers />
-			{/* TODO: Build newWrapper and new user object, set sets users to gridview */}
-			{/* <PanWrapper>
-				<Room>
-					<Users />
-					<UserDragContainer>
-						<Localuser audioRadius />
-					</UserDragContainer>
-				</Room>
-			</PanWrapper> */}
 		</React.Fragment>
 	)
 }

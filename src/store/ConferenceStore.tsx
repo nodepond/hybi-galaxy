@@ -87,7 +87,11 @@ export const useConferenceStore = create<ConferenceStore>((set,get) => {
 
   // Private Helper Functions *******************************************
   const _addUser = (id:ID, user?:any) :void => produceAndSet (newState => {
-    newState.users[id] = {id:id, user:user, mute:false, volume:1, pos:{x:0, y:0}, room:'default'}
+    let room = 'default'
+    if (id === 'speaker') {
+      room = 'speaker'
+    }
+    newState.users[id] = {id:id, user:user, mute:false, volume:1, pos:{x:0, y:0}, room:room}
   })
   const _removeUser = (id:ID) :void => produceAndSet (newState => {
     delete newState.users[id]
@@ -223,15 +227,8 @@ export const useConferenceStore = create<ConferenceStore>((set,get) => {
     const users = newState.users
     Object.keys(users).map(key => {
       const user = users[key]
-      // newState.users[key]['volume'] = getVolumeByRoomOrDistance(privateRoom, localPos, user.pos)
-      // newState.users[key]['volume'] = getVolumeByDistance(localPos, user.pos)
       newState.users[key]['volume'] = getVolumeByRoomOrDistance(localRoom, user.room, localPos, user.pos)
 
-      //// TODO: Also just a hack, to mute privateRoom people, if not in privateRoom itself
-      // if (localPos.x > 2500 && privateRoom) {
-      //   // console.log('***mute from outside')
-      //   newState.users[key]['volume'] = 0
-      // }
       return null
     })
   })
