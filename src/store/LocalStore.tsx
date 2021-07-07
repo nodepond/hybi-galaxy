@@ -22,14 +22,17 @@ type Store = {
 
 export const useLocalStore = create<Store>((set,get) => {
   const state = {
-    id:"",
-    mute:false,
-    volume:1,
-    video:undefined,
-    audio:undefined,
-    pos:panOptions.user.initialPosition,
-    pan: {x:transformWrapperOptions.defaultPositionX || 0,y: transformWrapperOptions.defaultPositionY || 0},
-    scale:1,
+    id: "",
+    mute: false,
+    volume: 1,
+    video: undefined,
+    audio: undefined,
+    pos: panOptions.user.initialPosition,
+    pan: {
+      x: transformWrapperOptions.defaultPositionX || 0,
+      y: transformWrapperOptions.defaultPositionY || 0
+    },
+    scale: 1,
     room: 'room-2'
   }
 
@@ -182,12 +185,12 @@ export const useLocalStore = create<Store>((set,get) => {
 
   const setMyID = (id:string) => set({id:id})
 
-  const onPanChange = ({scale,positionX, positionY}) => {
+  const onPanChange = ({ scale, positionX, positionY }) => {
     const panPosition = {
       x: positionX,
       y: positionY
     }
-    set({scale:scale, pan:panPosition})
+    set({ scale: scale, pan: panPosition })
   }
 
   return {
