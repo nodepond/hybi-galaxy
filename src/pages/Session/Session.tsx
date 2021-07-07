@@ -18,33 +18,37 @@ import { Users } from '../../components/User/Users'
 import { LocalStoreLogic } from '../../store/LocalStoreLogic'
 
 export const Session = () => {
-	return (
-		<React.Fragment>
-			<ErrorHandler />
-			<Info>
-				Welcome to our Prototype
-				<br />
-				Please use <b>Chrome</b> for now for a stable Experience
-			</Info>
-			<Header>Hybrid Stage by BoatPeopleProject e.V.</Header>
-			<JitsiConnection />
-			<LocalStoreLogic />
-			<PanWrapper>
-				<Room>
-					<Users />
-					<UserDragContainer>
-						<Localuser audioRadius />
-					</UserDragContainer>
-				</Room>
-			</PanWrapper>
-			<Footer>
-				<ToFoyerButton />
-				<ToStageButton />
-				<Spacer />
-				<MuteButton />
-				<Spacer />
-				<JoinButton joined={true} />
-			</Footer>
-		</React.Fragment>
-	)
+  function onAccessStreamFullscreen() {
+    console.log('onAccessStreamFullscreen called')
+  }
+
+  return (
+    <React.Fragment>
+      <ErrorHandler />
+      <Info>
+        Welcome to our Prototype
+        <br />
+        Please use <b>Chrome</b> for now for a stable Experience
+      </Info>
+      <Header>Hybrid Stage by BoatPeopleProject e.V.</Header>
+      <JitsiConnection />
+      <LocalStoreLogic />
+      <PanWrapper>
+        <Room>
+          <Users />
+          <UserDragContainer>
+            <Localuser audioRadius />
+          </UserDragContainer>
+        </Room>
+      </PanWrapper>
+      <Footer>
+        {/* <ToFoyerButton onAccessStreamFullscreen={() => { onAccessStreamFullscreen() }} />
+        <ToStageButton />
+        <Spacer /> */}
+        <MuteButton />
+        <Spacer />
+        <JoinButton joined />
+      </Footer>
+    </React.Fragment>
+  )
 }
