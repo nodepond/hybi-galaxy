@@ -28,11 +28,11 @@ interface ILocaluser {
 
 
 export const Localuser: React.FC<ILocaluser> = ({audioRadius = false}) => {
-
   const audioTrack = useLocalStore((store) => store.audio)
   const videoTrack = useLocalStore((store) => store.video)
   const isMute = useLocalStore((store) => store.mute)
-
+  const room = useLocalStore((store => store.room))
+  
   const localUserNode = useRef<HTMLDivElement>(null)
 
   return (
@@ -49,6 +49,7 @@ export const Localuser: React.FC<ILocaluser> = ({audioRadius = false}) => {
       )}
       {isMute && <MuteIndicator />}
       <NameContainer />
+      <div>Room {room}</div>
 		</Container>
 	);
 }
