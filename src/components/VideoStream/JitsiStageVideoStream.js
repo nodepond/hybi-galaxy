@@ -12,6 +12,7 @@ const StageFrame = styled.iframe`
   width: 100%;
   height: 100%;
   objectFit: fill;
+  pointer-events: none;
 `
 
 const fullscreenButtonStyle = {
