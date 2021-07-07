@@ -13,7 +13,7 @@ const sendRoomToPeers = (room:string, conferenceObject) => {
   // console.log('sendCommand sendRoomToPeers called with ', room)
   conferenceObject?.sendCommand("room", { value: room })
 }
-//throttle mustnt be re-rendered or it won't work
+// throttle must not be re-rendered or it won't work
 const throttledSendPos = throttle(sendPositionToPeers, 200)
 const throttledSendRoom = throttle(sendRoomToPeers, 200)
 
@@ -48,7 +48,7 @@ export const LocalStoreLogic = () => {
   },[ jsMeet, setLocalTracks ])
 
   useEffect(()=>{
-    if(id) {
+    if (id) {
       const newPos = JSON.stringify({...pos, id: id})
       throttledSendPos(newPos, conference)
       const newRoom = JSON.stringify({room, id: id})
