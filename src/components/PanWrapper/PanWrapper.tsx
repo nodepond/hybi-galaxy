@@ -3,10 +3,12 @@ import { TransformComponent, TransformWrapper, ReactZoomPanPinchRef } from "reac
 import { useLocalStore } from "./../../store/LocalStore"
 
 const panChange = store => store.onPanChange
+const setPos = store => store.setLocalPosition
 
 export const PanWrapper = ({children}) => {
   const transformRef = useRef<ReactZoomPanPinchRef>(null)
   const onPanChange = useLocalStore(panChange)
+  const setLocalPosition = useLocalStore(setPos)
 
   return (
     <TransformWrapper 
@@ -54,8 +56,9 @@ export const PanWrapper = ({children}) => {
               const x = 1756 + (Math.random()-0.5) * 200
               const y = 3326 + (Math.random()-0.5) * 200
               document.getElementById('DragElement')?.setAttribute('style', `transform:translate(${x}px, ${y}px);`)
-              setInterval(() => {
+              setTimeout(() => {
                 onPanChange(transformRef.current?.state)
+                setLocalPosition({ x: x, y: y })
               }, 1500)
             }}>Foyer</button>
             <button onClick={() => {
@@ -63,8 +66,9 @@ export const PanWrapper = ({children}) => {
               const x = 4256 + (Math.random()-0.5) * 200
               const y = 26 + (Math.random()-0.5) * 200
               document.getElementById('DragElement')?.setAttribute('style', `transform:translate(${x}px, ${y}px);`)
-              setInterval(() => {
+              setTimeout(() => {
                 onPanChange(transformRef.current?.state)
+                setLocalPosition({ x: x, y: y })
               }, 1500)
             }}>Stage</button>
           </div>
