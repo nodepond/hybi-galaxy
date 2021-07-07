@@ -13,7 +13,7 @@ const sendRoomToPeers = (room:string, conferenceObject) => {
   // console.log('sendCommand sendRoomToPeers called with ', room)
   conferenceObject?.sendCommand("room", { value: room })
 }
-//throttle mustnt be rerendered or it wont work
+//throttle mustnt be re-rendered or it won't work
 const throttledSendPos = throttle(sendPositionToPeers, 200)
 const throttledSendRoom = throttle(sendRoomToPeers, 200)
 
@@ -53,7 +53,7 @@ export const LocalStoreLogic = () => {
       throttledSendPos(newPos, conference)
       const newRoom = JSON.stringify({room, id: id})
       throttledSendRoom(newRoom, conference)
-      // calculate all volumes from other users on thie playfield after moving myself
+      // calculate all volumes from other users on the playfield after moving myself
       calculateVolumes(room, pos)
     }
   },[pos, room, id, conference, calculateVolumes])
