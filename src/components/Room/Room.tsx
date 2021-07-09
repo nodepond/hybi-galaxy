@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { panOptions } from '../PanWrapper/panOptions';
 import backgroundImage from '../../assets/blank-6000.png';
 // import {ReactComponent as BackgroundSvg} from '../../assets/foyer-background-svg-test.svg';
-import {ReactComponent as BackgroundSvg} from '../../assets/foyer-collide-background-6000.svg';
+import { ReactComponent as BackgroundSvg } from '../../assets/foyer-collide-background-6000.svg';
 
 import AmazonIVSVideoStream from '../VideoStream/AmazonIVSVideoStream'
 import ReactPlayerVideoStream from '../VideoStream/ReactPlayerVideoStream'
@@ -21,7 +21,7 @@ const RoomContainer = styled.div`
 
 const Background = styled.div`
   background-image:url(${backgroundImage});
-  opacity:0.3;
+  opacity:1;
   width:100%;
   height:100%;
   pointer-events: none;
@@ -39,10 +39,10 @@ const Divstyles = styled.iframe`
 const LiveStream = styled.div`
   background-color: #f0f;
   position: absolute;
-  width: 2030px;
-  height: 1275px;
-  left: 3456px;
-  top: 326px;
+  width: 1813px;
+  height: 1130px;
+  left: 3755px;
+  top: 2560px;
 `
 const Foyer = styled.div`
   background-color: none;
