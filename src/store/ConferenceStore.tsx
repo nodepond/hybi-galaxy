@@ -34,7 +34,7 @@ export type VideoTrack = Track
 
 export type User = { id:ID, user?:any, mute:boolean, volume:number, pos:Point, audio?:AudioTrack, video?:VideoTrack, room:String }
 type Users = { [id:string]:User }
-type Point = {x:number, y:number}
+type Point = { x:number, y:number }
 type ID = string
 
 export type IJitsiConference={
