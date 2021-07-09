@@ -33,7 +33,7 @@ export const useLocalStore = create<Store>((set,get) => {
       y: transformWrapperOptions.defaultPositionY || 0
     },
     scale: 1,
-    room: 'room-2'
+    room: 'room-0'
   }
 
   // # Private Functions
