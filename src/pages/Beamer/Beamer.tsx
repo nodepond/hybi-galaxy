@@ -14,7 +14,6 @@ export const Beamer = () => {
       <Info>
         Hybi-Galaxy Beamer-View
       </Info>
-      <Header>Hybi-Galaxy Beamer-View</Header>
       <JitsiConnection />
       <LocalBeamerStoreLogic />
       <BeamerUsers />

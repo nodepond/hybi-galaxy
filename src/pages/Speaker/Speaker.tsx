@@ -14,7 +14,6 @@ export const Speaker = () => {
 			<Info>
 				Hybi-Galaxy Speaker-View
 			</Info>
-			<Header>Hybi-Galaxy Speaker-View</Header>
 			<JitsiConnection />
 			<LocalSpeakerStoreLogic />
 			<SpeakerUsers />
