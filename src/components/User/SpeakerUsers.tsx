@@ -1,7 +1,7 @@
-import * as React from 'react';
-import styled from "styled-components";
-import { useConferenceStore } from '../../store/ConferenceStore';
-import { SpeakerUser } from "./SpeakerUser"
+import * as React from 'react'
+import styled from 'styled-components'
+import { useConferenceStore } from '../../store/ConferenceStore'
+import { SpeakerUser } from './SpeakerUser'
 
 // https://1linelayouts.glitch.me
 // https://codepen.io/una/pen/oNbvNQv
@@ -19,14 +19,14 @@ export const SpeakerUsers = () => {
     return user[1].room === 'speaker'
   })
   return (
-    speakers.length === 0 ? 
-    <div>Aktuell keine Sprecher*innen</div> :
-    <SpeakerUsersContainer>
-      {speakers.map(user => {
-        return(
-          <SpeakerUser key={user[0]} user={user[1]} id={user[0]}/>
-        )}
-      )}
-    </SpeakerUsersContainer>
+    speakers.length === 0
+      ? <div>Aktuell keine Sprecher*innen</div>
+      : <SpeakerUsersContainer>
+        {speakers.map(user => {
+          return (
+            <SpeakerUser key={user[0]} user={user[1]} id={user[0]} />
+          )
+        })}
+      </SpeakerUsersContainer>
   )
 }
