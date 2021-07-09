@@ -3,7 +3,7 @@ import ReactPlayer from 'react-player'
 import screenfull from 'screenfull'
 import styled from 'styled-components';
 
-const PLAYBACK_URL = process.env.REACT_APP_LIVE_STREAM_URL
+const REACT_APP_JITSI_STREAM_URL = process.env.REACT_APP_JITSI_STREAM_URL
 
 const StageFrame = styled.iframe`
   display: flex;
@@ -31,10 +31,10 @@ class JistiStageVideoStream extends Component {
   render() {
     return (
       <>
-      <StageFrame
-        src="https://the-prdct.com/bpp-stage" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen
-        >
-      </StageFrame>
+        <StageFrame
+          src={REACT_APP_JITSI_STREAM_URL} allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope;" allowFullScreen
+          >
+        </StageFrame>
       </>
     )
   }
