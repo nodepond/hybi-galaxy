@@ -4,7 +4,7 @@ import { Track, User } from "./ConferenceStore";
 import { panOptions, transformWrapperOptions } from "../components/PanWrapper/panOptions";
 import { mountStoreDevtool } from "simple-zustand-devtools";
 
-export type Point = {x:number, y:number}
+export type Point = { x:number, y:number }
 
 type Store = {
   setLocalTracks: (tracks:Track[]) => void
@@ -21,7 +21,7 @@ export const useLocalBeamerStore = create<Store>((set,get) => {
     video: undefined,
     audio: undefined,
     pos: panOptions.user.initialPosition,
-    pan: {x: transformWrapperOptions.defaultPositionX || 0, y: transformWrapperOptions.defaultPositionY || 0},
+    pan: { x: transformWrapperOptions.defaultPositionX || 0, y: transformWrapperOptions.defaultPositionY || 0 },
     scale: 1,
     room: 'default'
   }
