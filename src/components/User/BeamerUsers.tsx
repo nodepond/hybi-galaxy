@@ -10,7 +10,7 @@ const BeamerUsersBigGridContainer = styled.div`
   display: grid;
   height: 100vh;
   grid-gap: 0rem;
-  grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(610px, 1fr));
 `
 const BeamerUsersContainer = styled.div`
   background-color: black;
