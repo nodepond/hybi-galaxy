@@ -5,7 +5,7 @@ import { AudioTrack } from './AudioTrack'
 
 export const SpeakerUser = ({id, user}) => {
   // const myRoom = useConferenceStore(useCallback(store => store.users[id]['room'], [id]))
-  return(
+  return (
     <div className="speakerContainer" >
       <SpeakerVideoTrack id={id} />
       <AudioTrack id={id} volume={1} />
