@@ -2,12 +2,10 @@ import React from 'react';
 import styled from 'styled-components';
 import { panOptions } from '../PanWrapper/panOptions';
 import backgroundImage from '../../assets/blank-6000.png';
-// import {ReactComponent as BackgroundSvg} from '../../assets/foyer-background-svg-test.svg';
 import { ReactComponent as BackgroundSvg } from '../../assets/foyer-collide-background-6000.svg';
 
-import AmazonIVSVideoStream from '../VideoStream/AmazonIVSVideoStream'
-import ReactPlayerVideoStream from '../VideoStream/ReactPlayerVideoStream'
 import JitsiStageVideoStream from '../VideoStream/JitsiStageVideoStream'
+import Whiteboard from '../StageElements/Whiteboard'
 
 /* fixed size won't work, because when scale is 1 there will be room to pan; but the plugin won't allow it because scale is 1. 
 the fix is to set the size of the react-transform-component and react-transform-element exlusively (see GlobalStyles.tsx) */
@@ -27,17 +25,8 @@ const Background = styled.div`
   pointer-events: none;
 `
 
-const Divstyles = styled.iframe`
-  background-color: #f00;
-  position: absolute;
-  width: 1600px;
-  height: 900px;
-  left: 3968px;
-  top: 4540px;
-`
-
 const LiveStream = styled.div`
-  background-color: #f0f;
+  background-color: #000;
   position: absolute;
   width: 1813px;
   height: 1130px;
@@ -54,6 +43,15 @@ const Foyer = styled.div`
   z-index: -1;
 `
 
+const WhiteboardFrame = styled.div`
+  background-color: none;
+  position: absolute;
+  width: 897px;
+  height: 577px;
+  left: 481px;
+  top: 1931px;
+`
+
 export const Room:React.FC = ({children}) => {
   return (
     <RoomContainer>
@@ -65,6 +63,9 @@ export const Room:React.FC = ({children}) => {
           <JitsiStageVideoStream />
         </LiveStream>
         <Foyer id={"FoyerView"} />
+        <WhiteboardFrame>
+          <Whiteboard />
+        </WhiteboardFrame>
       </>
       {children}
     </RoomContainer>
