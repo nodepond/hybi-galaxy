@@ -9,7 +9,7 @@ import { LocalBeamerStoreLogic } from '../../store/LocalBeamerStoreLogic'
 
 export const Beamer = () => {
   return (
-    <div style={{ backgroundColor: 'red' }}>
+    <React.Fragment>
       <ErrorHandler />
       <Info>
         Hybi-Galaxy Beamer-View
@@ -18,6 +18,6 @@ export const Beamer = () => {
       <JitsiConnection />
       <LocalBeamerStoreLogic />
       <BeamerUsers />
-    </div>
+    </React.Fragment>
   )
 }
