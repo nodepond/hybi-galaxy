@@ -8,8 +8,8 @@ export const MuteButton = () => {
   const mute = useLocalStore(store => store.mute)
 
   if (mute) {
-    return <Button type="danger" onClick={toggleMute}><FaMicrophoneSlash/> Unmute</Button>
+    return <Button type="danger" onClick={toggleMute}><FaMicrophoneSlash/> Mikrophon an</Button>
   } else {
-    return <Button type="secondary" onClick={toggleMute}><FaMicrophone/> Mute</Button>
+    return <Button type="secondary" onClick={toggleMute}><FaMicrophone/> Stummschalten</Button>
   }
 }
