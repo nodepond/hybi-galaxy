@@ -57,7 +57,7 @@ export const warm:ITheme = {
     2:"#525252",
     3:"#E5E5E5",
     4:"#F2F2F2",
-    5:"#FFFCF6",
+    5:"#FFFFFF",
     6:"#FCFCFC",
   },
   primary: {

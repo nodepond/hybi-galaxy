@@ -13,7 +13,6 @@ import RobotoWoff_700 from './../../assets/fonts/roboto-v20-latin/roboto-v20-lat
 import RobotoWoff2_700 from './../../assets/fonts/roboto-v20-latin/roboto-v20-latin-700.woff2'
 import RobotoTTF_700 from './../../assets/fonts/roboto-v20-latin/roboto-v20-latin-700.ttf'
 
-
 export const GlobalStyles = createGlobalStyle<{theme:ITheme}>`
 
   /* roboto-regular - latin */
@@ -46,8 +45,6 @@ export const GlobalStyles = createGlobalStyle<{theme:ITheme}>`
         url(${RobotoWoff2_700}) format('woff'), /* Modern Browsers */
         url(${RobotoTTF_700}) format('truetype'); /* Safari, Android, iOS */
   }
-
-
 
   html, body {
     font-family: 'Roboto';
