@@ -59,8 +59,8 @@ export const useLocalStore = create<Store>((set,get) => {
   const setLocalPosition = (newPosition) => {
     set({pos:newPosition})
     
-    if (isHittingRoom(newPosition, "roomentry")) {
-      set({room: 'room-entry'})
+    if (isHittingRoom(newPosition, "room0")) {
+      set({room: 'room-0'})
     }
     else if (isHittingRoom(newPosition, "room1")) {
       set({room: 'room-1'})
@@ -151,6 +151,9 @@ export const useLocalStore = create<Store>((set,get) => {
     }
     else if (isHittingRoom(newPosition, "speaker")) {
       set({room: 'speaker'})
+    }
+    else if (isHittingRoom(newPosition, "stage")) {
+      set({room: 'stage'})
     }
     else {
       set({room: 'default'})
