@@ -8,16 +8,16 @@ import { BeamerUsers } from '../../components/User/BeamerUsers'
 import { LocalBeamerStoreLogic } from '../../store/LocalBeamerStoreLogic'
 
 export const Beamer = () => {
-	return (
-		<React.Fragment>
-			<ErrorHandler />
-			<Info>
-				Hybi-Galaxy Beamer-View
-			</Info>
-			<Header>Hybi-Galaxy Beamer-View</Header>
-			<JitsiConnection />
-			<LocalBeamerStoreLogic />
-			<BeamerUsers />
-		</React.Fragment>
-	)
+  return (
+    <div style={{ backgroundColor: 'red' }}>
+      <ErrorHandler />
+      <Info>
+        Hybi-Galaxy Beamer-View
+      </Info>
+      <Header>Hybi-Galaxy Beamer-View</Header>
+      <JitsiConnection />
+      <LocalBeamerStoreLogic />
+      <BeamerUsers />
+    </div>
+  )
 }
