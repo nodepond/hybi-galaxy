@@ -15,8 +15,8 @@ export const MuteIndicator = () => {
   const {toggleMute} = useLocalStore()
 
   const handleClick = () => {
-    toggleMute()
-  } 
+    // toggleMute()
+  }
 
   return (
     <Indicator onClick={handleClick}>
