@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 import { conferenceName } from '../../../components/JitsiConnection/jitsiOptions'
 import { useConferenceStore } from '../../../store/ConferenceStore'
-import { NameInputForm } from './NameInputForm'
 import { useHistory } from 'react-router-dom'
 import styled from 'styled-components'
 
