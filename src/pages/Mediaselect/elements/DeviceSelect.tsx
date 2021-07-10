@@ -5,23 +5,28 @@ import styled from 'styled-components'
 
 import Select from 'react-select'
 
-type Props = { audioSelect(device): void }
+type Props = {
+  devices: any
+  deviceSelect(deviceId): void
+}
 
-export const AudioSelect: React.FC<Props> = (props) => {
-  const options = [
-    { value: 'chocolate', label: 'Chocolate' },
-    { value: 'strawberry', label: 'Strawberry' },
-    { value: 'vanilla', label: 'Vanilla' }
-  ]
+export const DeviceSelect: React.FC<Props> = (props) => {
+  let options
+  if (props.devices) {
+    options = props.devices.map(device => {
+      return { value: device.deviceId, label: device.label }
+    })
+  } else {
+    options = [{ value: 'device.deviceId', label: 'device.label' }]
+  }
 
   const onChange = (e) => {
     console.log('onChange ', e)
-    props.audioSelect(e.value)
+    props.deviceSelect(e.value)
   }
 
   return (
     <>
-      <div>AUDIOSELECT</div>
       <Select options={options} onChange={onChange} />
     </>
   )
