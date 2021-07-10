@@ -3,26 +3,28 @@ import { useConnectionStore } from './../../store/ConnectionStore'
 
 const JitsiLocalMedia = () => {
   // First init or return jsMeet
-  useConnectionStore(store => store.initJitsiMeet)
-  // let the store refresh the list, so we are ready to use it from the store
-  useConnectionStore(store => store.refreshLocalDevices)()
+  const initJitsiMeet = useConnectionStore(store => store.initJitsiMeet)
 
-  const audioDevices = useConnectionStore(store => store.jsMeet?.audioDevices)
-  const videoDevices = useConnectionStore(store => store.jsMeet?.videoDevices)
-  const audioOutputDevices = useConnectionStore(store => store.jsMeet?.audioOutputDevices)
-  
+  const refreshLocalDevices = useConnectionStore(store => store.refreshLocalDevices)
+  const jsMeet = useConnectionStore(store => store.jsMeet)
 
   useEffect(() => {
-    console.log('audioDevices', audioDevices)
-  }, [audioDevices])
+    const init = async () => {
+      await initJitsiMeet()
+    }
+    init()
+  }, [initJitsiMeet])
 
   useEffect(() => {
-    console.log('videoDevices', videoDevices)
-  }, [videoDevices])
-
-  useEffect(() => {
-    console.log('audioOutputDevices', audioOutputDevices)
-  }, [audioOutputDevices])
+    if (!jsMeet) return
+    const getDevices = async () => {
+      await refreshLocalDevices()
+    }
+    getDevices()
+    // console.log('audioDevices', jsMeet.audioDevices)
+    // console.log('videoDevices', jsMeet.videoDevices)
+    // console.log('audioOutputDevices', jsMeet.audioOutputDevices)
+  }, [jsMeet, refreshLocalDevices])
 
   return (null)
 }
