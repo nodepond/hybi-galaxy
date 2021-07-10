@@ -28,9 +28,6 @@ const FormContainer = styled.div`
 export const Onboarding = () => {
   return (
     <React.Fragment>
-      <Info>
-        Onboarding
-      </Info>
       <CenterContainer>
         <BigHeadContainer>
           <Wave />

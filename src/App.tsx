@@ -43,8 +43,9 @@ function App() {
             <Mediaselect />
           </Route>
           <Route path="/">
-            <Header>Hybi-Galaxy</Header>
-            <Home />
+            {/* <Header>Hybi-Galaxy</Header> */}
+            {/* <Home /> */}
+            <Onboarding />
           </Route>
         </Switch>
       </Router>

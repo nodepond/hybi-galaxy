@@ -18,18 +18,14 @@ import { Users } from '../../components/User/Users'
 import { LocalStoreLogic } from '../../store/LocalStoreLogic'
 
 export const Session = () => {
-  function onAccessStreamFullscreen() {
-    console.log('onAccessStreamFullscreen called')
-  }
-
   return (
     <React.Fragment>
       <ErrorHandler />
-      <Info>
+      {/* <Info>
         Welcome to our Prototype
         <br />
         Please use <b>Chrome</b> for now for a stable Experience
-      </Info>
+      </Info> */}
       <Header>Hybrid Stage by BoatPeopleProject e.V.</Header>
       <JitsiConnection />
       <LocalStoreLogic />
