@@ -1,3 +1,4 @@
+import { AiOutlineConsoleSql } from "react-icons/ai"
 import { mountStoreDevtool } from "simple-zustand-devtools"
 import create from "zustand"
 import {
@@ -31,15 +32,20 @@ type IJitsiEvents = {
 
 type deviceType = "audio" | "video"
 
-type IMediaDevices = {
-  isDevicePermissionGranted: (type?: deviceType) => Promise<boolean>
-}
+// type IMediaDevices = {
+//   isDevicePermissionGranted: (type?: deviceType) => Promise<boolean>
+// }
 
 type IJsMeet = {
   init: (options: IJitsiInitOptions) => void
   addTrack: (track: Track) => void
   events: IJitsiEvents
-  mediaDevices: IMediaDevices
+  audioDevices?: any,
+  videoDevices?: any,
+  audioOutputDevices?: any,
+  selectedVideoDeviceId?: String,
+  selectedAudioDeviceId?: String
+  // mediaDevices: IMediaDevices
   createLocalTracks: (
     options: { devices: deviceType[] },
     notSure: boolean,
@@ -103,6 +109,32 @@ export const useConnectionStore = create<IStore>((set, get) => {
     // const result = await promise
     return await jitsiMeetPromise
   }
+  const refreshLocalDevices = async () => {
+    await initJitsiMeet().then(jsMeet => {
+      jsMeet.mediaDevices.enumerateDevices((devices) => {
+        const audioDevices = devices.filter(device => {
+          return device.kind === 'audioinput'
+        })
+        jsMeet.audioDevices = audioDevices
+      })
+    })
+    await initJitsiMeet().then(jsMeet => {
+      jsMeet.mediaDevices.enumerateDevices((devices) => {
+        const videoDevices = devices.filter(device => {
+          return device.kind === 'videoinput'
+        })
+        jsMeet.videoDevices = videoDevices
+      })
+    })
+    await initJitsiMeet().then(jsMeet => {
+      jsMeet.mediaDevices.enumerateDevices((devices) => {
+        const audioOutputDevices = devices.filter(device => {
+          return device.kind === 'audiooutput'
+        })
+        jsMeet.audioOutputDevices = audioOutputDevices
+      })
+    })
+  }
   const connectServer = (conferenceName: string) => {
     //Since jsMeet object is async (Promise), we should use also Promise to create a connection and connect. Because this is depandent to jsMeet object
     //But this function should be called only once if there is a current connection object.
@@ -147,6 +179,7 @@ export const useConnectionStore = create<IStore>((set, get) => {
   return {
     ...initialState,
     initJitsiMeet,
+    refreshLocalDevices,
     connectServer,
     disconnectServer: () => {
       get().connection?.disconnect()
