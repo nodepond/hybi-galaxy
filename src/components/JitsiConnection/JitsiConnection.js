@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import { useConnectionStore } from './../../store/ConnectionStore'
 import { useConferenceStore } from './../../store/ConferenceStore'
-import {useParams} from 'react-router-dom'
+import { useParams } from 'react-router-dom'
 
  /* globals: JitisMeetJS */
 
@@ -37,7 +37,7 @@ const JitsiConnection = () => {
     if(jsMeet && connected) {
       initConference(id)
     }
-  },[jsMeet, connected, initConference, id])
+  }, [jsMeet, connected, initConference, id])
 
 
   return (
