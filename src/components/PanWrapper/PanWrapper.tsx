@@ -63,8 +63,8 @@ export const PanWrapper = ({children}) => {
             }}>Foyer</button>
             <button onClick={() => {
               zoomToElement('LiveStreamView', 1500)
-              const x = 4256 + (Math.random()-0.5) * 200
-              const y = 26 + (Math.random()-0.5) * 200
+              const x = 6200 + (Math.random()-0.5) * 200
+              const y = 1860 + 1500 + (Math.random()-0.5) * 2030
               document.getElementById('DragElement')?.setAttribute('style', `transform:translate(${x}px, ${y}px);`)
               setTimeout(() => {
                 onPanChange(transformRef.current?.state)

@@ -33,6 +33,16 @@ const LiveStream = styled.div`
   left: 3755px;
   top: 2560px;
 `
+const LiveStreamView = styled.div`
+  background-color: none;
+  opacity: 0.3;
+  position: absolute;
+  width: 4013px;
+  height: 3130px;
+  left: 3270px;
+  top: 1960px;
+  z-index: -1;
+`
 const Foyer = styled.div`
   background-color: none;
   position: absolute;
@@ -59,9 +69,10 @@ export const Room:React.FC = ({children}) => {
         <BackgroundSvg />
       </Background>
       <>
-        <LiveStream id={"LiveStreamView"}>
+        <LiveStream>
           <JitsiStageVideoStream />
         </LiveStream>
+        <LiveStreamView id={"LiveStreamView"} />
         <Foyer id={"FoyerView"} />
         <WhiteboardFrame>
           <Whiteboard />
