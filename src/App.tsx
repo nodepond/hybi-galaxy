@@ -7,6 +7,7 @@ import { Home } from "./pages/Home/Home"
 import { Enter } from "./pages/Enter/Enter"
 import { Speaker } from "./pages/Speaker/Speaker"
 import { Beamer } from "./pages/Beamer/Beamer"
+import { Onboarding } from "./pages/Onboarding/Onboarding"
 import { Session } from "./pages/Session/Session"
 
 const AppContainer = styled.div`
@@ -33,6 +34,9 @@ function App() {
           </Route>
           <Route path="/beamer/:id">
             <Beamer />
+          </Route>
+          <Route path="/onboarding">
+            <Onboarding />
           </Route>
           <Route path="/">
             <Header>Hybi-Galaxy</Header>
