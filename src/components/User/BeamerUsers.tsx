@@ -38,6 +38,11 @@ const BeamerUsersBigGridContainer = styled.div`
   height: 100vh;
   grid-gap: 0rem;
   grid-template-columns: repeat(auto-fit, minmax(610px, 1fr));
+  object-fit: cover;
+
+  & video {
+    height: 100%;
+  }
 `
 const BeamerUsersContainer = styled.div`
   background-color: black;
@@ -45,6 +50,11 @@ const BeamerUsersContainer = styled.div`
   height: 50vh;
   grid-gap: 0rem;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  object-fit: cover;
+
+  & video {
+    height: 100%;
+  }
 `
 
 export const BeamerUsers = () => {

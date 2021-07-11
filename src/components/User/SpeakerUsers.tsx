@@ -17,6 +17,10 @@ const LogoContainer = styled.div`
   left: 0;
   width: 100%;
   height: 100%;
+
+  & video {
+    height: 100%;
+  }
 `
 const LogoFade = styled.div`
   display: flex;
@@ -29,6 +33,10 @@ const LogoFade = styled.div`
   animation-duration: 24s;
   animation-iteration-count: 1;
   animation-fill-mode: forwards;
+
+  & video {
+    height: 100%;
+  }
 `
 
 // https://1linelayouts.glitch.me
