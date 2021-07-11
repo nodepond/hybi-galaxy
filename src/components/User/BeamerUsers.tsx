@@ -61,13 +61,13 @@ const BeamerUsersBigGridContainer = styled.div`
 const BeamerUsersContainer = styled.div`
   background-color: black;
   display: grid;
-  height: 50vh;
+  height: 100vh;
   grid-gap: 0rem;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
   overflow: hidden;
 
   & video {
-    max-height: 100vh;
+    max-height: 100%;
   }
 `
 
