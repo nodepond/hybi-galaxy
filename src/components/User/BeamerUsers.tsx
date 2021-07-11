@@ -63,11 +63,11 @@ const BeamerUsersContainer = styled.div`
   display: grid;
   height: 100vh;
   grid-gap: 0rem;
-  grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
   overflow: hidden;
 
   & video {
-    max-height: 100%;
+    height: 100%;
   }
 `
 

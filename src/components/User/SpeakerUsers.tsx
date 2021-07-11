@@ -52,7 +52,6 @@ const SpeakerUsersBigGridContainer = styled.div`
   height: 100vh;
   grid-gap: 0rem;
   grid-template-columns: repeat(auto-fit, minmax(642px, 1fr));
-  grid-template-rows: 50% 50%;
   overflow: hidden;
 
   & video {
@@ -62,13 +61,13 @@ const SpeakerUsersBigGridContainer = styled.div`
 const SpeakerUsersContainer = styled.div`
   background-color: black;
   display: grid;
-  height: 50vh;
+  height: 100vh;
   grid-gap: 0rem;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
   overflow: hidden;
 
   & video {
-    max-height: 100vh;
+    height: 100%;
   }
 `
 
