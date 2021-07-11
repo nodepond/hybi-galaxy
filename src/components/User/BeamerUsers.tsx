@@ -5,8 +5,8 @@ import { BeamerUser } from './BeamerUser'
 import { ReactComponent as LogoSvg } from '../../assets/logoboat_white_circle.svg';
 
 const fadeOut = keyframes`
- 0% { opacity: 1; }
- 100% { opacity: 0; }
+ 0% { opacity: 0; }
+ 100% { opacity: 1; }
 `
 
 const LogoContainer = styled.div`
@@ -20,7 +20,7 @@ const LogoContainer = styled.div`
 const LogoFade = styled.div`
   margin: 5%;
   animation-name: ${fadeOut};
-  animation-duration: 8s;
+  animation-duration: 12s;
   animation-iteration-count: 1;
   animation-fill-mode: forwards;
 `
