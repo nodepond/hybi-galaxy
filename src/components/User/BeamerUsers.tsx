@@ -21,9 +21,9 @@ const LogoFade = styled.div`
   display: flex;
   top: 0;
   left: 0;
-  width: 100%;
-  height: 100%;
-  margin: 5%;
+  width: 80%;
+  height: 80%;
+  margin: 5% auto;
   animation-name: ${fadeOut};
   animation-duration: 12s;
   animation-iteration-count: 1;
