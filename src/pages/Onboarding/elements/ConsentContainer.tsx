@@ -38,10 +38,11 @@ export const ConsentContainer = () => {
 
   return (
     <>
-      <div>Um unsere digitale Bühne zu betreten, musst Du dein Mikrofon und deine Kamera eischalten.<br />Deine Stimme und Dein Bild wird im digitalen und analogen Raum zu sehen sein.<br />Sie werden nur im Rahmen dieser Veranstaltung verwendet. Wenn wir den Videostream aufzeichen, wirst Du extra darauf hingewiesen.<br /><br />Wenn Du damit einverstanden bist, setze in dem kleinen Kästchen ein Haken und drücke dann den blauen Knopf.</div>
+      <div>Du möchtest zu unserer digitalen Bühne?<br />Dann schalte dein Mikrofon und deine Kamera ein.<br /><br />Alle können dich sehen: hier im Internet und auf der wirklichen Bühne.<br /><br />Wenn wir Fotos machen oder filmen dann sagen wir das vorher.
+Bist Du einverstanden?<br />Dann klicke auf das kleine Feld und dann klicke auf den blauen Knopf.<br /><br /></div>
+      <input type='checkbox' onChange={handleCheckbox} defaultChecked={consent} /> Ich bin einverstanden.<br /><br />
+      <JoinButton name="joinButton" onClick={onSubmit}>Start</JoinButton><br /><br />
       {!consent && <div style={{color: 'red'}}>Bitte Datenschutzerklärung bestätigen.</div>}
-      <input type='checkbox' onChange={handleCheckbox} defaultChecked={consent} /> Ich bin einverstanden.
-      <JoinButton name="joinButton" onClick={onSubmit}>Start</JoinButton>
     </>
   )
 }
