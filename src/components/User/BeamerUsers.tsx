@@ -32,13 +32,27 @@ const LogoFade = styled.div`
 
 // https://1linelayouts.glitch.me
 // https://codepen.io/una/pen/oNbvNQv
+const BeamerUsersOneRowContainer = styled.div`
+  background-color: black;
+  display: grid;
+  height: 100vh;
+  grid-gap: 0rem;
+  grid-template-columns: repeat(auto-fit, minmax(642px, 1fr));
+  grid-template-rows: 100%;
+  overflow: hidden;
+
+  & video {
+    height: 100%;
+  }
+`
 const BeamerUsersBigGridContainer = styled.div`
   background-color: black;
   display: grid;
   height: 100vh;
   grid-gap: 0rem;
-  grid-template-columns: repeat(auto-fit, minmax(610px, 1fr));
-  object-fit: cover;
+  grid-template-columns: repeat(auto-fit, minmax(642px, 1fr));
+  grid-template-rows: 50% 50%;
+  overflow: hidden;
 
   & video {
     height: 100%;
@@ -50,10 +64,10 @@ const BeamerUsersContainer = styled.div`
   height: 50vh;
   grid-gap: 0rem;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  object-fit: cover;
+  overflow: hidden;
 
   & video {
-    height: 100%;
+    max-height: 100vh;
   }
 `
 
@@ -85,8 +99,20 @@ export const BeamerUsers = () => {
             <LogoSvg />
           </LogoFade>
         </LogoContainer>}
+
+      {beamerUsers.length !== 0 && beamerUsers.length <= 2 &&
+        <BeamerUsersOneRowContainer>
+          {beamerUsers.map(user => {
+            return (
+              <>
+                <BeamerUser key={user[0]} user={user[1]} id={user[0]} />
+              </>
+            )
+          })
+          }
+        </BeamerUsersOneRowContainer>}
     
-      {beamerUsers.length <= 4 &&
+      {beamerUsers.length > 2 && beamerUsers.length <= 4 &&
         <BeamerUsersBigGridContainer>
           {beamerUsers.map(user => {
             return (
