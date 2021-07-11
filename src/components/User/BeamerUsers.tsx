@@ -18,6 +18,11 @@ const LogoContainer = styled.div`
   height: 100%;
 `
 const LogoFade = styled.div`
+  display: flex;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
   margin: 5%;
   animation-name: ${fadeOut};
   animation-duration: 12s;
