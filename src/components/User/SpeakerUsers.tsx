@@ -1,7 +1,30 @@
 import * as React from 'react'
-import styled from 'styled-components'
+import styled, { keyframes } from 'styled-components'
 import { useConferenceStore } from '../../store/ConferenceStore'
 import { SpeakerUser } from './SpeakerUser'
+import { ReactComponent as LogoSvg } from '../../assets/logoboat_white_circle.svg';
+
+
+const fadeOut = keyframes`
+ 0% { opacity: 1; }
+ 100% { opacity: 0; }
+`
+
+const LogoContainer = styled.div`
+  background-color: black;
+  display: flex;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+`
+const LogoFade = styled.div`
+  margin: 5%;
+  animation-name: ${fadeOut};
+  animation-duration: 8s;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+`
 
 // https://1linelayouts.glitch.me
 // https://codepen.io/una/pen/oNbvNQv
@@ -29,7 +52,11 @@ export const SpeakerUsers = () => {
   return (
     <>
       {speakerUsers.length === 0 &&
-        <div>Aktuell keine Sprecher*innen</div>}
+        <LogoContainer>
+          <LogoFade>
+            <LogoSvg />
+          </LogoFade>
+        </LogoContainer>}
     
       {speakerUsers.length <= 4 &&
         <SpeakerUsersBigGridContainer>
