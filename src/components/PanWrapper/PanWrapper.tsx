@@ -1,9 +1,25 @@
 import React, { useRef } from "react"
 import { TransformComponent, TransformWrapper, ReactZoomPanPinchRef } from "react-zoom-pan-pinch"
 import { useLocalStore } from "./../../store/LocalStore"
+import styled from 'styled-components'
 
 const panChange = store => store.onPanChange
 const setPos = store => store.setLocalPosition
+
+const Button = styled.button`
+  margin: 6px;
+  padding: 12px 24px;
+  background-color: #ccc;
+  border-radius: 5px;
+  border: 1px solid ${props => props.theme.primary['2']};
+  color: black;
+  font-size: 1.1rem;
+  border: none;
+  &:hover {
+    background-color: #3b3b3b;
+    color: white;
+  }
+`
 
 export const PanWrapper = ({children}) => {
   const transformRef = useRef<ReactZoomPanPinchRef>(null)
@@ -39,19 +55,19 @@ export const PanWrapper = ({children}) => {
       {({ zoomIn, zoomOut, zoomToElement, ...rest }) => (
         <React.Fragment>
           <div className="tools">
-            <button onClick={() => { 
+            <Button onClick={() => { 
               zoomIn(0.5)
               setInterval(() => {
                 onPanChange(transformRef.current?.state)
               }, 300)
-            }}>+</button>
-            <button onClick={() => { 
+            }}>+</Button>
+            <Button onClick={() => { 
               zoomOut(0.5)
               setInterval(() => {
                 onPanChange(transformRef.current?.state)
               }, 300)
-            }}>-</button>
-            <button onClick={() => {
+            }}>-</Button>
+            <Button onClick={() => {
               zoomToElement('FoyerView', 1500)
               const x = 1756 + (Math.random()-0.5) * 200
               const y = 3326 + (Math.random()-0.5) * 200
@@ -60,8 +76,8 @@ export const PanWrapper = ({children}) => {
                 onPanChange(transformRef.current?.state)
                 setLocalPosition({ x: x, y: y })
               }, 1500)
-            }}>Foyer</button>
-            <button onClick={() => {
+            }}>Foyer</Button>
+            <Button onClick={() => {
               zoomToElement('LiveStreamView', 1500)
               const x = 6200 + (Math.random()-0.5) * 200
               const y = 1860 + 1500 + (Math.random()-0.5) * 2030
@@ -70,7 +86,7 @@ export const PanWrapper = ({children}) => {
                 onPanChange(transformRef.current?.state)
                 setLocalPosition({ x: x, y: y })
               }, 1500)
-            }}>Stage</button>
+            }}>Stage</Button>
           </div>
           <TransformComponent>
             {children}
