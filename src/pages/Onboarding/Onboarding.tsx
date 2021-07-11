@@ -1,5 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
+import { useMediaQuery } from 'react-responsive'
 import { ConsentContainer } from './elements/ConsentContainer'
 import { ReactComponent as Wave } from './../../assets/wave.svg'
 import { Footer } from '../../components/Footer/Footer'
@@ -26,6 +27,10 @@ const FormContainer = styled.div`
 `
 
 export const Onboarding = () => {
+  const isDesktopOrLaptop = useMediaQuery({
+    query: '(min-device-width: 1224px)'
+  })
+
   return (
     <React.Fragment>
       <CenterContainer>
@@ -34,9 +39,12 @@ export const Onboarding = () => {
           <BigHeadline>Willkommen in der Hybi-Galaxie</BigHeadline>
         </BigHeadContainer>
         <SubHeadline>Das hybride Theater-Foyer vom boat people projekt</SubHeadline>
-        <FormContainer>
-          <ConsentContainer />
-        </FormContainer>
+        {isDesktopOrLaptop &&
+          <FormContainer>
+            <ConsentContainer />
+          </FormContainer>}
+        {!isDesktopOrLaptop &&
+          <SubHeadline><br /><br /><br />Das Foyer funktioniert leider nicht auf Mobiltelefon oder Tablet. Bitte öffnen Sie die Seite auf einem Laptop oder dem Computer.</SubHeadline>}
       </CenterContainer>
       <Footer />
     </React.Fragment>
