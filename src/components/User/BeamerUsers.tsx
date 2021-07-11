@@ -58,12 +58,27 @@ const BeamerUsersBigGridContainer = styled.div`
     height: 100%;
   }
 `
+const BeamerUsersContainer3Row = styled.div`
+  background-color: black;
+  display: grid;
+  height: 100vh;
+  grid-gap: 0rem;
+  grid-template-columns: repeat(auto-fit, minmax(420px, 1fr));
+  grid-template-rows: 50% 50%;
+  overflow: hidden;
+
+  & video {
+    height: 100%;
+  }
+`
+
 const BeamerUsersContainer = styled.div`
   background-color: black;
   display: grid;
   height: 100vh;
   grid-gap: 0rem;
-  grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(310px, 1fr));
+
   overflow: hidden;
 
   & video {
@@ -124,7 +139,19 @@ export const BeamerUsers = () => {
           }
         </BeamerUsersBigGridContainer>}
 
-      {beamerUsers.length > 4 &&
+      {beamerUsers.length > 4 && beamerUsers.length <= 8 &&
+        <BeamerUsersContainer3Row>
+          {beamerUsers.map(user => {
+            return (
+              <>
+                <BeamerUser key={user[0]} user={user[1]} id={user[0]} />
+              </>
+            )
+          })
+          }
+        </BeamerUsersContainer3Row>}
+
+      {beamerUsers.length > 8 &&
         <BeamerUsersContainer>
           {beamerUsers.map(user => {
             return (

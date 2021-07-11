@@ -58,12 +58,25 @@ const SpeakerUsersBigGridContainer = styled.div`
     height: 100%;
   }
 `
+const SpeakerUsersContainer3Row = styled.div`
+  background-color: black;
+  display: grid;
+  height: 100vh;
+  grid-gap: 0rem;
+  grid-template-columns: repeat(auto-fit, minmax(420px, 1fr));
+  grid-template-rows: 50% 50%;
+  overflow: hidden;
+
+  & video {
+    height: 100%;
+  }
+`
 const SpeakerUsersContainer = styled.div`
   background-color: black;
   display: grid;
   height: 100vh;
   grid-gap: 0rem;
-  grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(310px, 1fr));
   overflow: hidden;
 
   & video {
@@ -77,6 +90,7 @@ export const SpeakerUsers = () => {
   const speakerUsers = usersArray.filter(user => {
     return user[1].room === 'speaker'
   })
+
   return (
     <>
       {speakerUsers.length === 0 &&
@@ -109,8 +123,20 @@ export const SpeakerUsers = () => {
           })
           }
         </SpeakerUsersBigGridContainer>}
+        
+        {speakerUsers.length > 4 && speakerUsers.length <= 8 &&
+        <SpeakerUsersContainer3Row>
+          {speakerUsers.map(user => {
+            return (
+              <>
+                <SpeakerUser key={user[0]} user={user[1]} id={user[0]} />
+              </>
+            )
+          })
+          }
+        </SpeakerUsersContainer3Row>}
 
-      {speakerUsers.length > 4 &&
+      {speakerUsers.length > 8 &&
         <SpeakerUsersContainer>
           {speakerUsers.map(user => {
             return (
