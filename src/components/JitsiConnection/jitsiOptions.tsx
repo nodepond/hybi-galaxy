@@ -1,3 +1,4 @@
+// TODO: Can we ged rid of this file and manage the option in a different way? Looks like totally useless overhead for me....
 // SETTINGS - these are Connection and Room Options for the Jitsi lib
 export interface IJitsiInitOptions {
   disableAudioLevels?: boolean

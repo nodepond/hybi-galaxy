@@ -194,7 +194,6 @@ export const useConferenceStore = create<ConferenceStore>((set,get) => {
   }
 
   const join = () => {
-
   }
   const leave = () => { 
     const conference = get().conferenceObject

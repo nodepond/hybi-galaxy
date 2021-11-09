@@ -172,7 +172,6 @@ export const useConnectionStore = create<IStore>((set, get) => {
       // Therefore, for now; connection object is created and connected; disconnect will disconnect and destroy the connection object.
       tmpConnection.connect()
       set({ connection: tmpConnection, error:undefined })
-      
     })
   }
 

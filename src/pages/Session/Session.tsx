@@ -10,6 +10,7 @@ import { Spacer } from '../../components/Footer/Spacer'
 
 import { Header } from '../../components/Header/Header'
 import JitsiConnection from '../../components/JitsiConnection/JitsiConnection'
+import JitsiStageConnection from '../../components/JitsiConnection/JitsiStageConnection'
 import { Localuser } from '../../components/Localuser/Localuser'
 import { UserDragContainer } from '../../components/Localuser/LocalUserContainer'
 import { PanWrapper } from '../../components/PanWrapper/PanWrapper'
@@ -31,6 +32,7 @@ export const Session = () => {
       </Info>}
       <Header>Hybrid Stage by BoatPeopleProject e.V.</Header>
       <JitsiConnection />
+      <JitsiStageConnection />
       <LocalStoreLogic />
       <PanWrapper>
         <Room>

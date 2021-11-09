@@ -23,3 +23,16 @@ export const connectionOptions = {
   // websocket: 'wss://meet.jit.si/xmpp-websocket', 
   clientNode: 'http://jitsi.org/jitsimeet', 
 }
+
+export const stageConnectionOptions = {
+  hosts: {
+     domain: 'meet.jit.si',
+     muc: 'conference.meet.jit.si', 
+     focus: 'focus.meet.jit.si',
+  }, 
+  externalConnectUrl: 'https://meet.jit.si/http-pre-bind', 
+  bosh: `https://meet.jit.si/http-bind?room=chatmosphere1234`, // ! if you make your own please omit the "?room=chatmosphere1234" part
+  // serviceUrl: `//server.com/http-bind`,
+  // websocket: 'wss://meet.jit.si/xmpp-websocket', 
+  clientNode: 'http://jitsi.org/jitsimeet', 
+}

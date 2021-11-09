@@ -19,6 +19,7 @@ const JitsiConnection = () => {
   const connectServer = useConnectionStore(getConnectServer)
   const initJitsiMeet = useConnectionStore(getInitJitsi)
   const connected = useConnectionStore(getConnection)
+  
   const initConference = useConferenceStore(getInitConference)
   const {id} = useParams() //get Id from url, should error check here I guess
 
@@ -44,6 +45,5 @@ const JitsiConnection = () => {
     null
   )
 }
-
 
 export default JitsiConnection
