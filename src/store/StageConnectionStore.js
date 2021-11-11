@@ -109,6 +109,49 @@ export const useStageConnectionStore = create((set, get) => {
   //   }
   // }
 
+  const _onConferenceJoined = () => {
+    console.log('_onConferenceJoined')
+  }
+  const _addUser = (id, user) => {
+    let newUsers = get().users
+    newUsers.push(user)
+    console.log('new user', id, user)
+    if (user._displayName.toLowerCase() === 'stage') {
+      set({ stageUserId: user._id})
+    }
+    set({ users: newUsers })
+    console.log('_addUser get().users', get().users)
+  }
+  const _removeUser = (id) => {
+    console.log('remove user', id)
+    const newUsers = get().users.filter(user => {
+      return user._id !== id
+    })
+    set({ users: newUsers })
+    console.log('_removeUser get().users', get().users)
+  }
+  const _onRemoteTrackAdded = (track) => {
+    console.log('_onRemoteTrackAdded', track)
+    if (track.ownerEndpointId === get().stageUserId) {
+      console.log('THIS IS ONE OF THE STAGE TRACKS')
+    }
+    console.log('track.isLocal()', track.isLocal())
+    if (track.isLocal()) return
+    // const id = track.getParticipantId() // get user id of track
+    // track.getType() === "audio" ? _addAudioTrack(id, track) : _addVideoTrack(id, track)
+    let newTracks = get().tracks
+    newTracks.push(track)
+    set({ tracks: newTracks })
+  }
+  const _onRemoteTrackRemoved = (track) => {
+    console.log('_onRemoteTrackRemoved', track)
+
+    // const id = track.getParticipantId() // get user id of track
+    // track.getType() === 'audio' ? _removeAudioTrack(id) : _removeVideoTrack(id) // do we need that? maybe if user is 
+    // TODO: REMOVE FROM TRACK ARRAY
+    track.dispose()
+  }
+
   const connectServer = () => {
     // Since jsMeet object is async (Promise), we should use also Promise to create a connection and connect. Because this is depandent to jsMeet object
     // But this function should be called only once if there is a current connection object.
@@ -129,15 +172,22 @@ export const useStageConnectionStore = create((set, get) => {
         jsMeet.events.connection.CONNECTION_ESTABLISHED,
         (e) => {
           console.log("stageConnection CONNECTION_ESTABLISHED:", e)
-          // set({ connection: undefined, error: stageConnection.xmpp.lastErrorMsg })
-        },
-        // _setConnected,
+          // e is just a unique id
+          _setConnected()
+          const conference = stageConnection.initJitsiConference("bpp-stage", {})
+          conference.on(jsMeet.events.conference.USER_JOINED, _addUser)
+          conference.on(jsMeet.events.conference.USER_LEFT, _removeUser)
+          conference.on(jsMeet.events.conference.TRACK_ADDED, _onRemoteTrackAdded)
+          conference.on(jsMeet.events.conference.TRACK_REMOVED, _onRemoteTrackRemoved)
+          conference.on(jsMeet.events.conference.CONFERENCE_JOINED, _onConferenceJoined)
+          conference.join()
+          set({ conference: conference })
+        }
       )
       stageConnection.addEventListener(
         jsMeet.events.connection.CONNECTION_FAILED,
         (e) => {
           console.log("stageConnection:", stageConnection.xmpp.lastErrorMsg)
-          console.log("stageConnection:", get().connection)
           set({ connection: undefined, error: stageConnection.xmpp.lastErrorMsg })
         },
       )
@@ -160,5 +210,8 @@ export const useStageConnectionStore = create((set, get) => {
     },
     setConnected: () => set({ connected: true }), // actually this should initiate a new conference object without joining it
     setDisconnected: () => set({ connected: false }),
+    stageUserId: '',
+    users: [],
+    tracks: []
   }
 })

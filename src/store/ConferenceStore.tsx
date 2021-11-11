@@ -156,7 +156,7 @@ export const useConferenceStore = create<ConferenceStore>((set,get) => {
   }
 
   const _onConferenceJoined = () => {
-    set({isJoined:true})//only Local User -> could be in LocalStore
+    set({ isJoined: true }) // only Local User -> could be in LocalStore
     const conference = get().conferenceObject
     conference?.setDisplayName(get().displayName)
   } 
@@ -167,9 +167,9 @@ export const useConferenceStore = create<ConferenceStore>((set,get) => {
     const connection = useConnectionStore.getState().connection //either move to ConnectionStore or handle undefined here
     const enteredConferenceName = conferenceID.length > 0 ? conferenceID.toLowerCase() : get().conferenceName?.toLowerCase()
     const conferenceName = process.env.REACT_APP_DEMO_SESSION || enteredConferenceName
-    set({conferenceName:conferenceName})
+    set({ conferenceName: conferenceName })
     // console.log("init:",connection ,JitsiMeetJS , conferenceName,useConnectionStore.getState().connected,conferenceID)
-    if(connection && JitsiMeetJS && conferenceName) {
+    if (connection && JitsiMeetJS && conferenceName) {
       const conference = connection.initJitsiConference(conferenceName, conferenceOptions) //TODO before unload close connection
       conference.on(JitsiMeetJS.events.conference.USER_JOINED, _addUser)
       conference.on(JitsiMeetJS.events.conference.USER_LEFT, _removeUser)

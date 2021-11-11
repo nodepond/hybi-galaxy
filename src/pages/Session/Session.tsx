@@ -16,6 +16,7 @@ import { UserDragContainer } from '../../components/Localuser/LocalUserContainer
 import { PanWrapper } from '../../components/PanWrapper/PanWrapper'
 import { Room } from '../../components/Room/Room'
 import { Users } from '../../components/User/Users'
+import { Stages } from '../../components/User/Stages'
 import { LocalStoreLogic } from '../../store/LocalStoreLogic'
 import { useMediaQuery } from 'react-responsive'
 
@@ -37,6 +38,7 @@ export const Session = () => {
       <PanWrapper>
         <Room>
           <Users />
+          <Stages />
           <UserDragContainer>
             <Localuser audioRadius />
           </UserDragContainer>
