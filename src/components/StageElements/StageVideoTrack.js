@@ -1,8 +1,7 @@
 import * as React from 'react';
 import { useCallback, useEffect, useRef } from "react"
 import styled from "styled-components"
-import { useConferenceStore } from './../../store/ConferenceStore';
-import { useLocalStore } from './../../store/LocalStore';
+import { useStageConnectionStore } from './../../store/StageConnectionStore'
 
 
 const StageVideo = styled.video`
@@ -17,11 +16,19 @@ const StageVideo = styled.video`
 `
 
 export const StageVideoTrack = React.memo((id) => {
-  // const videoTrack = useConferenceStore(useCallback(store => store.users[id].video, [id]))
+  const tracks = useStageConnectionStore(store => store.tracks)
   const myRef = useRef()
 
   useEffect(() => {
-  }, [])
+    const currentVideoElement = myRef.current
+    console.log('tracks from within StageVideoTrack', tracks)
+    tracks.map(track => {
+      console.log('track video', track.track.kind)
+      if (track.track.kind === 'video') {
+        currentVideoElement.attach(track.track)
+      }
+    })
+  }, [tracks])
 
   return (
     <StageVideo autoPlay={true} ref={myRef} className={`remoteTrack videoTrack ${id}video`} id={`${id}video`} />

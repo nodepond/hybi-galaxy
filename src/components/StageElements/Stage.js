@@ -12,7 +12,7 @@ export const Stage = ({pos, user}) => {
     <div style={{ position:'absolute', left:`${pos.x}px`, top:`${pos.y}px` }} className="stageContainer" >
       HALLO
       {user._displayName}
-      <StageVideoTrack id={Math.random().toString()} />
+      <StageVideoTrack id={user._id} />
     </div>
   )
 }
