@@ -6,6 +6,21 @@ import { ThemeProvider } from 'styled-components'
 import { warm, dark } from './theme/theme'
 import { GlobalStyles } from './theme/GlobalStyles/GlobalStyles'
 
+import * as Sentry from "@sentry/react"
+import { Integrations } from "@sentry/tracing"
+
+const REACT_APP_SENTRY_URL = process.env.REACT_APP_SENTRY_URL
+
+Sentry.init({
+  dsn: REACT_APP_SENTRY_URL,
+  integrations: [new Integrations.BrowserTracing()],
+
+  // Set tracesSampleRate to 1.0 to capture 100%
+  // of transactions for performance monitoring.
+  // We recommend adjusting this value in production
+  tracesSampleRate: 1.0,
+});
+
 ReactDOM.render(
 	<React.StrictMode>
 		<ThemeProvider theme={warm}>
