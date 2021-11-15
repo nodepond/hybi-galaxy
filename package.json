@@ -1,9 +1,11 @@
 {
-  "homepage": "https://hybi-galaxy.netlify.app",
+  "homepage": "https://hybi-galaxy.com",
   "name": "react-app",
   "version": "0.6.0",
   "private": true,
   "dependencies": {
+    "@sentry/react": "^6.14.3",
+    "@sentry/tracing": "^6.14.3",
     "@testing-library/jest-dom": "^5.11.8",
     "@testing-library/react": "^11.2.3",
     "@testing-library/user-event": "^12.6.0",
