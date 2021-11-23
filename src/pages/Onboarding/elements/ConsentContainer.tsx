@@ -32,7 +32,7 @@ export const ConsentContainer = () => {
     console.log(consent)
     if (!consent) {
     } else {
-      history.push(`/session/bpp`)
+      history.push(`/session/bpp-1`)
     }
   }
 

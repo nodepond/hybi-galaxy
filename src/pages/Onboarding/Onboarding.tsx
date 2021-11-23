@@ -36,7 +36,7 @@ export const Onboarding = () => {
       <CenterContainer>
         <BigHeadContainer>
           <Wave />
-          <BigHeadline>Willkommen in der Hybi-Galaxie</BigHeadline>
+          <BigHeadline>Willkommen in der Hybi-Galaxy</BigHeadline>
         </BigHeadContainer>
         <SubHeadline>Das hybride Theater-Foyer vom boat people projekt</SubHeadline>
         {isDesktopOrLaptop &&
