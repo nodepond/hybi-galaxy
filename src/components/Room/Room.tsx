@@ -69,9 +69,9 @@ export const Room:React.FC = ({children}) => {
         <BackgroundSvg />
       </Background>
       <>
-        <LiveStream>
+        {/* <LiveStream>
           <JitsiStageVideoStream />
-        </LiveStream>
+        </LiveStream> */}
         <LiveStreamView id={"LiveStreamView"} />
         <Foyer id={"FoyerView"} />
         <WhiteboardFrame>

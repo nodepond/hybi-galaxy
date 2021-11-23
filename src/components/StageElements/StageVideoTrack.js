@@ -6,8 +6,8 @@ import { useStageConnectionStore } from './../../store/StageConnectionStore'
 
 const StageVideo = styled.video`
   background: none;
-  width: 200px;
-  height: 200px;
+  width: 100%;
+  height: 100%;
   object-position: 50% 50%;
   display: block;
   border-radius: 10px;
@@ -15,23 +15,40 @@ const StageVideo = styled.video`
   transform: scaleX(-1);
 `
 
-export const StageVideoTrack = React.memo((id) => {
-  const tracks = useStageConnectionStore(store => store.tracks)
+export const StageVideoTrack = React.memo(({id}) => {
+  const { tracks } = useStageConnectionStore()
   const myRef = useRef()
+  let videoTrack
 
   useEffect(() => {
     const currentVideoElement = myRef.current
-    console.log('tracks from within StageVideoTrack', tracks)
+    
+    // Notice how MediaStream and MediaStreamTrack works
+    // https://developer.mozilla.org/en-US/docs/Web/API/MediaStreamTrack
+    // https://developer.mozilla.org/en-US/docs/Web/API/MediaStream/addTrack
+    
     tracks.map(track => {
-      console.log('track video', track.track.kind)
       if (track.track.kind === 'video') {
-        currentVideoElement.attach(track.track)
+        videoTrack = track
+        track?.attach(currentVideoElement)
+
+        // alternative way to attach the track
+        // track.stream.addTrack(track.track)
+        // currentVideoElement.srcObject = track.stream
       }
+    })
+    return(() => {
+      videoTrack?.detach(currentVideoElement)
     })
   }, [tracks])
 
+  // const onVideoClicked = (e) => {
+  //   videoTrack?.detach(e.target)
+  //   videoTrack?.attach(e.target)
+  // }
+
   return (
-    <StageVideo autoPlay={true} ref={myRef} className={`remoteTrack videoTrack ${id}video`} id={`${id}video`} />
+    <StageVideo autoPlay={true} ref={myRef} className={`remoteTrack videoTrack ${id}-video`} id={`${id}-video`} />
   )
 })
 

@@ -1,18 +1,11 @@
-import React, { useCallback, useEffect, useRef } from 'react';
-import { useStageConnectionStore } from './../../store/StageConnectionStore'
 import { StageVideoTrack } from './StageVideoTrack'
+import { StageAudioTrack } from './StageAudioTrack'
 
 export const Stage = ({pos, user}) => {
-  useEffect(() => {
-    console.log('user', user)
-    console.log('user.displayName', user._displayName)
-  }, [user])
-
   return(
-    <div style={{ position:'absolute', left:`${pos.x}px`, top:`${pos.y}px` }} className="stageContainer" >
-      HALLO
-      {user._displayName}
-      <StageVideoTrack id={user._id} />
+    <div key={`${user._id}-stagecontainer`} style={{ position:'absolute', left:`${pos.x}px`, top:`${pos.y}px`, width:`${pos.width}px`, height:`${pos.height}px` }} className="stageContainer" >
+      <StageVideoTrack id={user._id} key={`${user._id}-videostage`} />
+      <StageAudioTrack id={user._id} key={`${user._id}-audiostage`} />
     </div>
   )
 }

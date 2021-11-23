@@ -1,5 +1,6 @@
 // This is used as connection store for connecting to the "stage cam"
 import create from 'zustand'
+import produce, { current } from 'immer'
 import { stageConnectionConfig } from '../../src/serverConfig'
 
 const initOptions = {
@@ -32,7 +33,6 @@ export const useStageConnectionStore = create((set, get) => {
   // # Public Functions
   const initJitsiMeet = async () => {
     const jsMeet = get().jsMeet
-    console.log('stage jsMeet already present', jsMeet)
     if (jsMeet) return jsMeet
 
     // not sure if most elegant but now returns jitsi object and we can initialize conference nicely after server
@@ -42,7 +42,6 @@ export const useStageConnectionStore = create((set, get) => {
         jsMeet.setLogLevel(jsMeet.logLevels.ERROR)
         jsMeet.init(initOptions)
         set({ jsMeet: jsMeet })
-        console.log('stage jsMeet', jsMeet)
         // get().connectServer()
         resolve(jsMeet)
       }).catch(err => {
@@ -51,105 +50,42 @@ export const useStageConnectionStore = create((set, get) => {
     })
     return await jitsiMeetPromise
   }
-  // const refreshLocalDevices = async () => {
-  //   await initJitsiMeet().then(jsMeet => {
-  //     jsMeet.mediaDevices.enumerateDevices((devices) => {
-  //       const audioDevices = devices.filter(device => {
-  //         return device.kind === 'audioinput'
-  //       })
-  //       jsMeet.audioDevices = audioDevices
-  //     })
-  //   })
-  //   await initJitsiMeet().then(jsMeet => {
-  //     jsMeet.mediaDevices.enumerateDevices((devices) => {
-  //       const videoDevices = devices.filter(device => {
-  //         return device.kind === 'videoinput'
-  //       })
-  //       jsMeet.videoDevices = videoDevices
-  //     })
-  //   })
-  //   await initJitsiMeet().then(jsMeet => {
-  //     jsMeet.mediaDevices.enumerateDevices((devices) => {
-  //       const audioOutputDevices = devices.filter(device => {
-  //         return device.kind === 'audiooutput'
-  //       })
-  //       jsMeet.audioOutputDevices = audioOutputDevices
-  //     })
-  //   })
-  // }
-  // const init = async (conferenceID) => {
-  //   const JitsiMeetJS = await initJitsiMeet()
-  //   const connection = useConnectionStore.getState().connection //either move to ConnectionStore or handle undefined here
-
-  //   const conferenceName = 'bpp-stage'
-
-  //   // console.log("init:",connection ,JitsiMeetJS , conferenceName,useConnectionStore.getState().connected,conferenceID)
-
-  //   if(connection && JitsiMeetJS && conferenceName) {
-  //     const conference = connection.initJitsiConference(conferenceName, conferenceOptions) //TODO before unload close connection
-  //     conference.on(JitsiMeetJS.events.conference.USER_JOINED, _addUser)
-  //     conference.on(JitsiMeetJS.events.conference.USER_LEFT, _removeUser)
-  //     conference.on(JitsiMeetJS.events.conference.TRACK_ADDED, _onRemoteTrackAdded)
-  //     conference.on(JitsiMeetJS.events.conference.TRACK_REMOVED, _onRemoteTrackRemoved)
-  //     conference.on(JitsiMeetJS.events.conference.CONFERENCE_JOINED, _onConferenceJoined)
-  //     conference.on(JitsiMeetJS.events.conference.TRACK_MUTE_CHANGED, _onTrackMuteChanged);
-  //     conference.on(JitsiMeetJS.events.conference.CONFERENCE_ERROR, _onConferenceError);
-  //     //conference.on(JitsiMeetJS.events.conference.DISPLAY_NAME_CHANGED, onUserNameChanged);
-  //     // conference.on(JitsiMeetJS.events.conference.TRACK_AUDIO_LEVEL_CHANGED, on_remote_track_audio_level_changed);
-  //     //conference.on(JitsiMeetJS.events.conference.PHONE_NUMBER_CHANGED, onPhoneNumberChanged);
-  //     conference.addCommandListener("pos", _onPositionReceived)
-  //     conference.addCommandListener("room", _onRoomReceived)
-  //     // r.on(JitsiMeetJS.events.conference.PARTICIPANT_PROPERTY_CHANGED, (e) => console.log("Property Changed ", e))
-  //     window.addEventListener('beforeunload', leave) //does this help?  
-  //     window.addEventListener('unload', leave) //does this help?
-  //     conference.join()
-  //     set({conferenceObject:conference,error:undefined})
-  //   } else {
-  //     throw new Error('Jitsi Server connection has not been initialized or failed :( - did you call initJitsiMeet on ConnectionStore yet?')
-  //   }
-  // }
 
   const _onConferenceJoined = () => {
-    console.log('_onConferenceJoined')
+    console.log('_onStageConferenceJoined')
   }
   const _addUser = (id, user) => {
-    let newUsers = get().users
-    newUsers.push(user)
-    console.log('new user', id, user)
+    console.log('_addUser', id)
     if (user._displayName.toLowerCase() === 'stage') {
       set({ stageUserId: user._id})
     }
-    set({ users: newUsers })
+    set(produce( draft => { draft.users.push(user) }))
     console.log('_addUser get().users', get().users)
   }
   const _removeUser = (id) => {
-    console.log('remove user', id)
-    const newUsers = get().users.filter(user => {
+    console.log('_removeUser', id)
+    set(produce( draft => { draft.users.filter(user => {
       return user._id !== id
-    })
-    set({ users: newUsers })
-    console.log('_removeUser get().users', get().users)
+    }) }))
+    console.log("_removeUser get().users", get().users)
   }
   const _onRemoteTrackAdded = (track) => {
     console.log('_onRemoteTrackAdded', track)
-    if (track.ownerEndpointId === get().stageUserId) {
-      console.log('THIS IS ONE OF THE STAGE TRACKS')
-    }
-    console.log('track.isLocal()', track.isLocal())
     if (track.isLocal()) return
+    if (track.ownerEndpointId === get().stageUserId) {
+      set(produce( draft => { draft.tracks.push(track) }))
+    }
     // const id = track.getParticipantId() // get user id of track
     // track.getType() === "audio" ? _addAudioTrack(id, track) : _addVideoTrack(id, track)
-    let newTracks = get().tracks
-    newTracks.push(track)
-    set({ tracks: newTracks })
+    console.log("_onRemoteTrackAdded get().tracks", get().tracks)
   }
   const _onRemoteTrackRemoved = (track) => {
-    console.log('_onRemoteTrackRemoved', track)
-
-    // const id = track.getParticipantId() // get user id of track
-    // track.getType() === 'audio' ? _removeAudioTrack(id) : _removeVideoTrack(id) // do we need that? maybe if user is 
-    // TODO: REMOVE FROM TRACK ARRAY
+    console.log("_onRemoteTrackRemoved", track)
+    set(produce( draft => { draft.tracks.filter(currentTrack => {
+      return currentTrack.id !== track.id
+    }) }))
     track.dispose()
+    console.log("_onRemoteTrackRemoved get().tracks", get().tracks)
   }
 
   const connectServer = () => {
