@@ -64,7 +64,7 @@ export const useStageConnectionStore = create((set, get) => {
   }
   const _removeUser = (id) => {
     console.log('_removeUser', id)
-    set(produce( draft => { draft.users.filter(user => {
+    set(produce( draft => { draft.users = draft.users.filter(user => {
       return user._id !== id
     }) }))
     console.log("_removeUser get().users", get().users)
@@ -81,8 +81,8 @@ export const useStageConnectionStore = create((set, get) => {
   }
   const _onRemoteTrackRemoved = (track) => {
     console.log("_onRemoteTrackRemoved", track)
-    set(produce( draft => { draft.tracks.filter(currentTrack => {
-      return currentTrack.id !== track.id
+    set(produce( draft => { draft.tracks = draft.tracks.filter(currentTrack => {
+      return currentTrack.track.id !== track.track.id
     }) }))
     track.dispose()
     console.log("_onRemoteTrackRemoved get().tracks", get().tracks)
