@@ -4,7 +4,6 @@ import { panOptions } from '../PanWrapper/panOptions';
 import backgroundImage from '../../assets/blank-6000.png';
 import { ReactComponent as BackgroundSvg } from '../../assets/foyer-collide-background-6000.svg';
 
-import JitsiStageVideoStream from '../VideoStream/JitsiStageVideoStream'
 import Whiteboard from '../StageElements/Whiteboard'
 
 /* fixed size won't work, because when scale is 1 there will be room to pan; but the plugin won't allow it because scale is 1. 
@@ -25,14 +24,7 @@ const Background = styled.div`
   pointer-events: none;
 `
 
-const LiveStream = styled.div`
-  background-color: #000;
-  position: absolute;
-  width: 1813px;
-  height: 1130px;
-  left: 3755px;
-  top: 2560px;
-`
+
 const LiveStreamView = styled.div`
   background-color: none;
   opacity: 0.3;
@@ -69,9 +61,6 @@ export const Room:React.FC = ({children}) => {
         <BackgroundSvg />
       </Background>
       <>
-        {/* <LiveStream>
-          <JitsiStageVideoStream />
-        </LiveStream> */}
         <LiveStreamView id={"LiveStreamView"} />
         <Foyer id={"FoyerView"} />
         <WhiteboardFrame>

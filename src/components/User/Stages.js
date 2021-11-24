@@ -8,7 +8,7 @@ export const Stages = () => {
     <>
       {users.map(user => {
         return(
-          <Stage key={`${user._id}-stagecontainer`} user={user} pos={ { x: 3755, y: 2560, width: 1813, height: 1130} } />
+          <Stage key={`${user._id}-stagecontainer`} user={user} pos={ { x: 3755, y: 2560, width: 1813, height: 1130 } } />
         )
       })}
     </>

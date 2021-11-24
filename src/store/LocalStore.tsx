@@ -36,7 +36,7 @@ export const useLocalStore = create<Store>((set,get) => {
     room: 'room-0'
   }
 
-  // # Private Functions
+  // Private Functions
   const _produceAndSet = (callback:(newState:Store)=>void)=>set(state => produce(state, newState => callback(newState)))
 
   const isHittingRoom = (newPosition, roomname = "room1") => {

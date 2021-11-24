@@ -4,6 +4,7 @@ import { Info } from '../../components/common/Info/Info'
 import { Footer } from '../../components/Footer/Footer'
 import { JoinButton } from '../../components/Footer/JoinButton/JoinButton'
 import { MuteButton } from '../../components/Footer/MuteButton/MuteButton'
+import { ToggleStageViewButton } from '../../components/Footer/AdminButtons/ToggleStageViewButton'
 import { ToStageButton } from '../../components/Footer/WarpButtons/ToStageButton'
 import { ToFoyerButton } from '../../components/Footer/WarpButtons/ToFoyerButton'
 import { Spacer } from '../../components/Footer/Spacer'
@@ -20,7 +21,24 @@ import { Stages } from '../../components/User/Stages'
 import { LocalStoreLogic } from '../../store/LocalStoreLogic'
 import { useMediaQuery } from 'react-responsive'
 
+import { useLocalAdminStore } from '../../store/LocalAdminStore';
+
+import JitsiStageVideoStream from '../../components/VideoStream/JitsiStageVideoStream'
+
+import styled from 'styled-components';
+
+const LiveStream = styled.div`
+  background-color: #000;
+  position: absolute;
+  width: 1813px;
+  height: 1130px;
+  left: 3755px;
+  top: 2560px;
+`
+
 export const Session = () => {
+  const embeddedStageView = useLocalAdminStore(store => store.embeddedStageView)
+
   const isDesktopOrLaptop = useMediaQuery({
     query: '(min-device-width: 1224px)'
   })
@@ -38,10 +56,13 @@ export const Session = () => {
       <PanWrapper>
         <Room>
           <Users />
-          <Stages />
+          {embeddedStageView && <Stages />}
           <UserDragContainer>
             <Localuser audioRadius />
           </UserDragContainer>
+          {!embeddedStageView && <LiveStream>
+            <JitsiStageVideoStream />
+          </LiveStream>}
         </Room>
       </PanWrapper>
       <Footer>
@@ -51,6 +72,8 @@ export const Session = () => {
         <MuteButton />
         <Spacer />
         <JoinButton joined />
+        <Spacer />
+        <ToggleStageViewButton />
       </Footer>
     </React.Fragment>
   )
