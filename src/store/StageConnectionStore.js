@@ -56,7 +56,7 @@ export const useStageConnectionStore = create((set, get) => {
   }
   const _addUser = (id, user) => {
     console.log('_addUser', id)
-    if (user._displayName.toLowerCase() === 'stage') {
+    if (user && user._displayName.toLowerCase() === 'stage') {
       set({ stageUserId: user._id})
     }
     set(produce( draft => { draft.users.push(user) }))
