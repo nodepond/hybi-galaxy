@@ -5,6 +5,7 @@ import { Footer } from '../../components/Footer/Footer'
 import { JoinButton } from '../../components/Footer/JoinButton/JoinButton'
 import { MuteButton } from '../../components/Footer/MuteButton/MuteButton'
 import { ToggleStageViewButton } from '../../components/Footer/AdminButtons/ToggleStageViewButton'
+import { MediaSelectButton } from '../../components/Footer/AdminButtons/MediaSelectButton'
 import { ToStageButton } from '../../components/Footer/WarpButtons/ToStageButton'
 import { ToFoyerButton } from '../../components/Footer/WarpButtons/ToFoyerButton'
 import { Spacer } from '../../components/Footer/Spacer'
@@ -74,6 +75,7 @@ export const Session = () => {
         <JoinButton joined />
         <Spacer />
         <ToggleStageViewButton />
+        <MediaSelectButton />
       </Footer>
     </React.Fragment>
   )

@@ -16,6 +16,8 @@ type Store = {
   setLocalPosition: (newPosition:Point) => void
   setLocalTracks: (tracks:Track[]) => void
   toggleMute: () => void
+  showMediaselect:Boolean
+  toggleMediaselect: () => void
   clearLocalTracks: () => void
   setMyID: (id:string) => void
 } & User & ZoomPan
@@ -33,7 +35,8 @@ export const useLocalStore = create<Store>((set,get) => {
       y: transformWrapperOptions.defaultPositionY || 0
     },
     scale: 1,
-    room: 'room-0'
+    room: 'room-0',
+    showMediaselect: false
   }
 
   // Private Functions
@@ -172,9 +175,14 @@ export const useLocalStore = create<Store>((set,get) => {
     }
   }
 
+  const toggleMediaselect = () => {
+    const ms = get().showMediaselect
+    set({ showMediaselect: !ms })
+  }
+
   const setLocalTracks = tracks => _produceAndSet(newState=>{
-    const audioTrack = tracks.find(t=>t.getType() === 'audio')
-    const videoTrack = tracks.find(t=>t.getType() === 'video')
+    const audioTrack = tracks.find(t => t.getType() === 'audio')
+    const videoTrack = tracks.find(t => t.getType() === 'video')
     newState.video = videoTrack
     newState.audio = audioTrack
   })
@@ -197,14 +205,15 @@ export const useLocalStore = create<Store>((set,get) => {
   }
 
   return {
-  ...state,
-  setLocalPosition,
-  setLocalTracks,
-  toggleMute,
-  clearLocalTracks,
-  setMyID,
-  onPanChange
-}
+    ...state,
+    setLocalPosition,
+    setLocalTracks,
+    toggleMute,
+    toggleMediaselect,
+    clearLocalTracks,
+    setMyID,
+    onPanChange
+  }
 })
 
 if (process.env.NODE_ENV === "development") {
