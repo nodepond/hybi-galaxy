@@ -13,7 +13,7 @@ const JitsiLocalMedia = () => {
       await initJitsiMeet()
     }
     init()
-  }, [initJitsiMeet])
+  }, [jsMeet])
 
   useEffect(() => {
     if (!jsMeet) return
@@ -21,9 +21,6 @@ const JitsiLocalMedia = () => {
       await refreshLocalDevices()
     }
     getDevices()
-    // console.log('audioDevices', jsMeet.audioDevices)
-    // console.log('videoDevices', jsMeet.videoDevices)
-    // console.log('audioOutputDevices', jsMeet.audioOutputDevices)
   }, [jsMeet, refreshLocalDevices])
 
   return (null)

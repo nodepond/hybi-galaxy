@@ -1,8 +1,4 @@
-import React, { useState } from 'react'
-import { conferenceName } from '../../../components/JitsiConnection/jitsiOptions'
-import { useHistory } from 'react-router-dom'
-import styled from 'styled-components'
-
+import React from 'react'
 import Select from 'react-select'
 
 type Props = {
@@ -21,7 +17,7 @@ export const DeviceSelect: React.FC<Props> = (props) => {
   }
 
   const onChange = (e) => {
-    console.log('onChange ', e)
+    // console.log('onChange ', e)
     props.deviceSelect(e.value)
   }
 

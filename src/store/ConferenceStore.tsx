@@ -44,6 +44,7 @@ export type IJitsiConference={
   join:()=>void
   setDisplayName:(name:string)=>void
   addTrack:(track:Track)=>Promise<any>
+  replaceTrack:(oldTrack:any, newTrack:Track)=>Promise<any>
   myUserId:()=>ID
   leave:()=>void
 }

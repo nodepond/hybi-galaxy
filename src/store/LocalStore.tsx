@@ -15,6 +15,8 @@ type ZoomPan = {
 type Store = {
   setLocalPosition: (newPosition:Point) => void
   setLocalTracks: (tracks:Track[]) => void
+  setLocalAudioTrack: (track:Track) => void
+  setLocalVideoTrack: (track:Track) => void
   toggleMute: () => void
   showMediaselect:Boolean
   toggleMediaselect: () => void
@@ -180,14 +182,22 @@ export const useLocalStore = create<Store>((set,get) => {
     set({ showMediaselect: !ms })
   }
 
-  const setLocalTracks = tracks => _produceAndSet(newState=>{
+  const setLocalTracks = tracks => _produceAndSet(newState => {
     const audioTrack = tracks.find(t => t.getType() === 'audio')
     const videoTrack = tracks.find(t => t.getType() === 'video')
-    newState.video = videoTrack
+    newState.video = videoTrack 
     newState.audio = audioTrack
   })
 
-  const clearLocalTracks = () => _produceAndSet(newState=>{
+  const setLocalAudioTrack = track => _produceAndSet(newState => {
+    newState.audio = track
+  })
+
+  const setLocalVideoTrack = track => _produceAndSet(newState => {
+    newState.video = track
+  })
+
+  const clearLocalTracks = () => _produceAndSet(newState => {
     // newState.audio?.dispose() //these throw errors on reconnection - some event handlers still leftover
     // newState.video?.dispose()
     newState.audio=undefined
@@ -208,6 +218,8 @@ export const useLocalStore = create<Store>((set,get) => {
     ...state,
     setLocalPosition,
     setLocalTracks,
+    setLocalAudioTrack,
+    setLocalVideoTrack,
     toggleMute,
     toggleMediaselect,
     clearLocalTracks,
