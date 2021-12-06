@@ -24,7 +24,6 @@ const Background = styled.div`
   pointer-events: none;
 `
 
-
 const LiveStreamView = styled.div`
   background-color: none;
   opacity: 0.3;

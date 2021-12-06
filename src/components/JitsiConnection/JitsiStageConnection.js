@@ -5,7 +5,7 @@ import { useParams } from 'react-router-dom'
 
  /* globals: JitisMeetJS */
 
-const JitsiStageConnection = () => {
+const JitsiStageConnection = ({ room = 'bpp-stage' }) => {
   const disconnectServer = useStageConnectionStore(store => store.disconnectServer)
   const jsMeet = useStageConnectionStore(store => store.initJitsiMeet)
   const connectServer = useStageConnectionStore(store => store.connectServer)
@@ -21,7 +21,7 @@ const JitsiStageConnection = () => {
   }, [initJitsiMeet])
 
   useEffect(() => {
-    connectServer()
+    connectServer(room)
     return () => disconnectServer()
   }, [initJitsiMeet, connectServer, disconnectServer])
 

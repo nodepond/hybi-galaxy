@@ -87,7 +87,7 @@ export const useStageConnectionStore = create((set, get) => {
     console.log("_onRemoteTrackRemoved get().tracks", get().tracks)
   }
 
-  const connectServer = () => {
+  const connectServer = (room) => {
     // Since jsMeet object is async (Promise), we should use also Promise to create a connection and connect. Because this is depandent to jsMeet object
     // But this function should be called only once if there is a current connection object.
     const connection = get().connection
@@ -109,7 +109,7 @@ export const useStageConnectionStore = create((set, get) => {
           console.log("stageConnection CONNECTION_ESTABLISHED:", e)
           // e is just a unique id
           _setConnected()
-          const conference = stageConnection.initJitsiConference("bpp-stage", {})
+          const conference = stageConnection.initJitsiConference(room, {})
           conference.on(jsMeet.events.conference.USER_JOINED, _addUser)
           conference.on(jsMeet.events.conference.USER_LEFT, _removeUser)
           conference.on(jsMeet.events.conference.TRACK_ADDED, _onRemoteTrackAdded)
