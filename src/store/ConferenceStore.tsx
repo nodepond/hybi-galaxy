@@ -247,5 +247,5 @@ export const useConferenceStore = create<ConferenceStore>((set,get) => {
 })
 
 if(process.env.NODE_ENV === 'development') {
-	mountStoreDevtool('ConferenceStore', useConferenceStore)
+	// mountStoreDevtool('ConferenceStore', useConferenceStore)
 }

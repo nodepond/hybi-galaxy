@@ -233,5 +233,5 @@ if (process.env.NODE_ENV === "development") {
   root.id = 'simple-zustand-devtools-3';
   document.body.appendChild(root);
 
-  mountStoreDevtool("LocalStore", useLocalStore, root)
+  // mountStoreDevtool("LocalStore", useLocalStore, root)
 }

@@ -194,5 +194,5 @@ if (process.env.NODE_ENV === "development") {
   root.id = 'simple-zustand-devtools2';
   document.body.appendChild(root);
 
-  mountStoreDevtool("ConnectionStore", useConnectionStore, root)
+  // mountStoreDevtool("ConnectionStore", useConnectionStore, root)
 }
