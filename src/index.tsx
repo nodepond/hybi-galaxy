@@ -14,6 +14,7 @@ const REACT_APP_SENTRY_URL = process.env.REACT_APP_SENTRY_URL
 Sentry.init({
   dsn: REACT_APP_SENTRY_URL,
   integrations: [new Integrations.BrowserTracing()],
+	release: "hybi-sentry@0.1.1",
 
   // Set tracesSampleRate to 1.0 to capture 100%
   // of transactions for performance monitoring.
