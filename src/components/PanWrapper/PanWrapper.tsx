@@ -30,19 +30,29 @@ export const PanWrapper = ({children}) => {
     <TransformWrapper 
       ref={transformRef}
       onInit={(e) => {
-        onPanChange(e.state)
+        if (e.state) {
+          onPanChange(e.state)
+        }
       }}
       onPanning={(e) => {
-        onPanChange(e.state)
+        if (e.state) {
+          onPanChange(e.state)
+        }
       }}
       onPanningStop={(e) => {
-        onPanChange(e.state)
+        if (e.state) {
+          onPanChange(e.state)
+        }
       }}
       onZoom={(e) => {
-        onPanChange(e.state)
+        if (e.state) {
+          onPanChange(e.state)
+        }
       }}
       onZoomStop={(e) => {
-        onPanChange(e.state)
+        if (e.state) {
+          onPanChange(e.state)
+        }
       }}
       centerOnInit={true}
       limitToBounds={false}

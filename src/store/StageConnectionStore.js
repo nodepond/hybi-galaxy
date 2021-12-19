@@ -55,11 +55,16 @@ export const useStageConnectionStore = create((set, get) => {
     console.log('_onStageConferenceJoined')
   }
   const _addUser = (id, user) => {
-    if (user?._displayName?.toLowerCase() === 'stage') {
-      set({ stageUserId: user._id})
+    if (user?._displayName?.toLowerCase() === 'stage' ||
+        user?._displayName?.toLowerCase() === 'stage-1' ||
+        user?._displayName?.toLowerCase() === 'stage-2' ||
+        user?._displayName?.toLowerCase() === 'stage-3' ||
+        user?._displayName?.toLowerCase() === 'stage-4'
+    ) {
+      set(produce( draft => { draft.stageUserIds.push(user._id) }))
+      // set({ stageUserId: user._id})
     }
     set(produce( draft => { draft.users.push(user) }))
-    console.log('_addUser get().users', get().users)
   }
   const _removeUser = (id) => {
     console.log('_removeUser', id)
@@ -71,7 +76,7 @@ export const useStageConnectionStore = create((set, get) => {
   const _onRemoteTrackAdded = (track) => {
     console.log('_onRemoteTrackAdded', track)
     if (track.isLocal()) return
-    if (track.ownerEndpointId === get().stageUserId) {
+    if (get().stageUserIds.includes(track.ownerEndpointId)) {
       set(produce( draft => { draft.tracks.push(track) }))
     }
     // const id = track.getParticipantId() // get user id of track
@@ -145,7 +150,7 @@ export const useStageConnectionStore = create((set, get) => {
     },
     setConnected: () => set({ connected: true }), // actually this should initiate a new conference object without joining it
     setDisconnected: () => set({ connected: false }),
-    stageUserId: '',
+    stageUserIds: [],
     users: [],
     tracks: []
   }

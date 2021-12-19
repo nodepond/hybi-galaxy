@@ -13,7 +13,7 @@ export const StageAudioTrack = React.memo(({id}) => {
     const currentAudioElement = myRef.current
 
     tracks.map(track => {
-      if (track.track.kind === 'audio') {
+      if (track.track.kind === 'audio' && track.ownerEndpointId === id) {
         audioTrack = track
         track?.attach(currentAudioElement)
 

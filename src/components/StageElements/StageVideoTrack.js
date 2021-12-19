@@ -28,7 +28,7 @@ export const StageVideoTrack = React.memo(({id}) => {
     // https://developer.mozilla.org/en-US/docs/Web/API/MediaStream/addTrack
     
     tracks.map(track => {
-      if (track.track.kind === 'video') {
+      if (track.track.kind === 'video' && track.ownerEndpointId === id) {
         videoTrack = track
         track?.attach(currentVideoElement)
 
