@@ -17,7 +17,7 @@ export interface IJitsiInitOptions {
 export const conferenceName = process.env.REACT_APP_DEMO_SESSION || "boatpeopleproject"
 
 export const conferenceOptions = {
-  openBridgeChannel: false, //what is this doing?
+  p2p: { enabled: false }
 }
 
 export const jitsiInitOptions:IJitsiInitOptions = {

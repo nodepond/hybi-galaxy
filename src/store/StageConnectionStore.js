@@ -119,7 +119,7 @@ export const useStageConnectionStore = create((set, get) => {
           console.log("stageConnection CONNECTION_ESTABLISHED:", e)
           // e is just a unique id
           _setConnected()
-          const conference = stageConnection.initJitsiConference(room, {})
+          const conference = stageConnection.initJitsiConference(room, { p2p: { enabled: false } })
           conference.on(jsMeet.events.conference.USER_JOINED, _addUser)
           conference.on(jsMeet.events.conference.USER_LEFT, _removeUser)
           conference.on(jsMeet.events.conference.TRACK_ADDED, _onRemoteTrackAdded)
