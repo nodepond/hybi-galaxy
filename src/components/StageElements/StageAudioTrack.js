@@ -1,17 +1,21 @@
 import * as React from 'react';
-import { useCallback, useEffect, useRef } from "react"
-import styled from "styled-components"
+import { useEffect, useRef } from "react"
 import { useStageConnectionStore } from './../../store/StageConnectionStore'
+import { useLocalStore } from "../../store/LocalStore"
 
-export const StageAudioTrack = React.memo(({id, volume}) => {
+export const StageAudioTrack = React.memo(({id, audioEnabledAtRooms}) => {
   const tracks = useStageConnectionStore(store => store.tracks)
+  const room = useLocalStore(store => store.room)
   const myRef = useRef()
 
   let audioTrack
+  let volume = 0
 
   useEffect(() => {
+    volume = audioEnabledAtRooms.includes(room) ? 1 : 0
+    console.log('Stage Audio, local user entered room', room, volume)
     myRef.current.volume = volume
-  }, [volume])
+  }, [room])
 
   useEffect(() => {
     const currentAudioElement = myRef.current
