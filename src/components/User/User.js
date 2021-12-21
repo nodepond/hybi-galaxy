@@ -6,7 +6,7 @@ import { MuteIndicator } from './MuteIndicator';
 import { VideoTrack } from './VideoTrack';
 import { NameTag } from '../NameTag/NameTag';
 
-export const User = ({id, user}) => {
+export const User = ({id, user, key}) => {
   const myPos = useConferenceStore(useCallback(store => store.users[id]['pos'], [id]))
   const myVolume = useConferenceStore(useCallback(store => store.users[id]['volume'], [id]))
   const myRoom = useConferenceStore(useCallback(store => store.users[id]['room'], [id]))
