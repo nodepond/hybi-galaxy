@@ -3,11 +3,15 @@ import { useCallback, useEffect, useRef } from "react"
 import styled from "styled-components"
 import { useStageConnectionStore } from './../../store/StageConnectionStore'
 
-export const StageAudioTrack = React.memo(({id}) => {
+export const StageAudioTrack = React.memo(({id, volume}) => {
   const tracks = useStageConnectionStore(store => store.tracks)
   const myRef = useRef()
 
   let audioTrack
+
+  useEffect(() => {
+    myRef.current.volume = volume
+  }, [volume])
 
   useEffect(() => {
     const currentAudioElement = myRef.current

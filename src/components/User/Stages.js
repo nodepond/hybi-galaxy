@@ -13,10 +13,10 @@ export const Stages = () => {
   const { users } = useStageConnectionStore()
   return (
     <>
-      {users.map(user => {
-        const selectedStage = user?._displayName?.toLowerCase()
+      {users.map(stage => {
+        const selectedStage = stage?._displayName?.toLowerCase()
         return(
-          validStageNames.includes(selectedStage) && <Stage key={`${user._id}-stagecontainer`} user={user} pos={stageCamsConfig[selectedStage]} />
+          validStageNames.includes(selectedStage) && <Stage key={`${stage._id}-stagecontainer`} stage={stage} pos={stageCamsConfig[selectedStage]} />
         )
       })}
     </>
