@@ -12,7 +12,7 @@ export const StageAudioTrack = React.memo(({id, audioEnabledAtRooms}) => {
   let volume = 0
 
   useEffect(() => {
-    volume = audioEnabledAtRooms.includes(room) ? 1 : 0
+    volume = audioEnabledAtRooms?.includes(room) ? 1 : 0
     console.log('Stage Audio, local user entered room', room, volume)
     myRef.current.volume = volume
   }, [room])
