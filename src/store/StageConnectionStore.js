@@ -64,7 +64,11 @@ export const useStageConnectionStore = create((set, get) => {
         user?._displayName?.toLowerCase() === 'stage-1' ||
         user?._displayName?.toLowerCase() === 'stage-2' ||
         user?._displayName?.toLowerCase() === 'stage-3' ||
-        user?._displayName?.toLowerCase() === 'stage-4'
+        user?._displayName?.toLowerCase() === 'stage-4' ||
+        user?._displayName?.toLowerCase() === 'stage-red' ||
+        user?._displayName?.toLowerCase() === 'stage-green' ||
+        user?._displayName?.toLowerCase() === 'stage-blue' ||
+        user?._displayName?.toLowerCase() === 'stage-yellow'
     ) {
       set(produce( draft => { draft.stageUserIds.push(user._id) }))
       // set({ stageUserId: user._id})

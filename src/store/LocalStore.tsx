@@ -160,6 +160,18 @@ export const useLocalStore = create<Store>((set,get) => {
     else if (isHittingRoom(newPosition, "stage")) {
       set({room: 'stage'})
     }
+    else if (isHittingRoom(newPosition, "stage-red")) {
+      set({room: 'stage-red'})
+    }
+    else if (isHittingRoom(newPosition, "stage-green")) {
+      set({room: 'stage-green'})
+    }
+    else if (isHittingRoom(newPosition, "stage-blue")) {
+      set({room: 'stage-blue'})
+    }
+    else if (isHittingRoom(newPosition, "stage-yellow")) {
+      set({room: 'stage-yellow'})
+    }
     else {
       set({room: 'default'})
     }
