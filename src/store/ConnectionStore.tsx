@@ -86,7 +86,7 @@ export const useConnectionStore = create<IStore>((set, get) => {
 
   // # Private Functions
   const _setConnected = () => set({ connected: true, error:undefined }) //actually this should initiate a new conference object without joining it
-  const _setDisconnected = () => set({ connected: false })
+  const _setDisconnected = () => set({ connected: false, connection: undefined })
   var jitsiMeetPromise
 
   // # Public Functions
