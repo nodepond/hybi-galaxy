@@ -54,6 +54,11 @@ export const useStageConnectionStore = create((set, get) => {
   const _onConferenceJoined = () => {
     console.log('_onStageConferenceJoined')
   }
+  const _onConferenceError = (e) => {
+    console.log("stageConnectionError:", e)
+    get().connection?.disconnect()
+    set({ conference: undefined, connection: undefined })
+  }
   const _addUser = (id, user) => {
     if (user?._displayName?.toLowerCase() === 'stage' ||
         user?._displayName?.toLowerCase() === 'stage-1' ||
