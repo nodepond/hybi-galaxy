@@ -27,7 +27,7 @@ export const useStageConnectionStore = create((set, get) => {
 
   // # Private Functions
   const _setConnected = () => set({ connected: true, error: undefined }) // actually this should initiate a new conference object without joining it
-  const _setDisconnected = () => set({ connected: false })
+  const _setDisconnected = () => set({ connected: false, connection: undefined })
   let jitsiMeetPromise
 
   // # Public Functions
@@ -125,6 +125,7 @@ export const useStageConnectionStore = create((set, get) => {
           conference.on(jsMeet.events.conference.TRACK_ADDED, _onRemoteTrackAdded)
           conference.on(jsMeet.events.conference.TRACK_REMOVED, _onRemoteTrackRemoved)
           conference.on(jsMeet.events.conference.CONFERENCE_JOINED, _onConferenceJoined)
+          conference.on(jsMeet.events.conference.CONFERENCE_ERROR, _onConferenceError);
           conference.join()
           set({ conference: conference })
         }
