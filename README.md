@@ -78,12 +78,46 @@ To ensure a good audio-quality we did the following things
     stereo: true,
 ```
 
+For app-stability, we disable p2p mode:
+```
+    testing: {
+        p2pTestMode: true
+    }
+    
+    p2p: {
+        enabled: false
+    }
+```
+
 Do not forget to restart after editing
 
 ```
 # Restart Services
 $ /etc/init.d/jicofo restart && /etc/init.d/jitsi-videobridge2 restart && /etc/init.d/prosody restart
 ```
+
+# Allow connections in nginx
+
+Edit `nano /etc/nginx/sites-enabled/YOUR-SITE.conf`
+
+Make sure, bosh connections allow all Access COntrol
+
+```
+    # BOSH
+    location = /http-bind {
+        add_header 'Access-Control-Allow-Origin' '*' always;
+        add_header 'Access-Control-Allow-Headers' 'Origin, X-Requested-With, Content-Type, Accept';
+
+        proxy_pass       http://localhost:5280/http-bind;
+        proxy_set_header X-Forwarded-For $remote_addr;
+        proxy_set_header Host $http_host;
+    }
+```
+
+Again, do not forget to restart after editing:
+
+`systemctl restart nginx`
+
 
 # Old Readme:
 

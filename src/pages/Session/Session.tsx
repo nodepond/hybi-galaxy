@@ -74,7 +74,7 @@ export const Session = () => {
         <Spacer />
         <JoinButton joined />
         <Spacer />
-        <ToggleStageViewButton />
+        {/* <ToggleStageViewButton /> */}
         <MediaSelectButton />
       </Footer>
     </React.Fragment>
