@@ -100,7 +100,7 @@ $ /etc/init.d/jicofo restart && /etc/init.d/jitsi-videobridge2 restart && /etc/i
 
 Edit `nano /etc/nginx/sites-enabled/YOUR-SITE.conf`
 
-Make sure, bosh connections allow all Access COntrol
+Make sure, bosh connections allow all Access Control
 
 ```
     # BOSH
