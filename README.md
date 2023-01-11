@@ -53,7 +53,7 @@ ROOT/speaker/SESSIONNAME
 
 # Stage view
 
-We use a separate jitsi-server to broadcasting the stage. It is at the time of writing the best compromise we can get to ensure good audio-quality and low-latency stream, because we want to to the webRTC route, instead of RTMP. (RTMP always gave us some seconds delay, no matter what we tried, and we tried a lot. It looks, that by the end of the year, broadcasting via webRTC will be much more supported, because the community (i.e. OBS-community) discusses this topic a lot at the moment and new techologies are build, like WHIP.
+We use a separate jitsi-server to broadcasting the stage. It is at the time of writing the best compromise we can get to ensure good audio-quality and low-latency stream, because we want to do the webRTC route, instead of RTMP. (RTMP always gave us some seconds delay, no matter what we tried, and we tried a lot. It looks, that by the end of the year, broadcasting via webRTC will be much more supported, because of the community (i.e. OBS-community) discusses this topic a lot at the moment and new techologies are build, like WHIP.)
 
 To ensure a good audio-quality we did the following things
 
