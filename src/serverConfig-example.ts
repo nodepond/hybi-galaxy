@@ -18,8 +18,8 @@ export const connectionOptions = {
   //    useStunTurn: true,
   // }, 
   // useStunTurn: true,
-  bosh: `https://meet.jit.si/http-bind?room=chatmosphere1234`, // ! if you make your own please omit the "?room=chatmosphere1234" part
-  // serviceUrl: `//server.com/http-bind`,
+  bosh: `https://meet.jit.si/http-bind`, /* deprecated */
+  serviceUrl: `//the-prdct.com/http-bind`,  /* use this instead of bosh-param */
   // websocket: 'wss://meet.jit.si/xmpp-websocket', 
   clientNode: 'http://jitsi.org/jitsimeet', 
 }
@@ -31,8 +31,8 @@ export const stageConnectionOptions = {
      focus: 'focus.meet.jit.si',
   }, 
   externalConnectUrl: 'https://meet.jit.si/http-pre-bind', 
-  bosh: `https://meet.jit.si/http-bind?room=chatmosphere1234`, // ! if you make your own please omit the "?room=chatmosphere1234" part
-  // serviceUrl: `//server.com/http-bind`,
+  // bosh: `https://meet.jit.si/http-bind?room=chatmosphere1234`, /* deprecated */
+  serviceUrl: `//server.com/http-bind`, /* use this instead of bosh-param */
   // websocket: 'wss://meet.jit.si/xmpp-websocket', 
   clientNode: 'http://jitsi.org/jitsimeet', 
 }

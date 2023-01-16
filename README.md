@@ -118,6 +118,10 @@ Again, do not forget to restart after editing:
 
 `systemctl restart nginx`
 
+# Troubleshooting
+
+When having problems, connecting to the prosody-service on the backend, please check, if you set the serverUrl-param in the serverConfig.ts. The bosh-param is deprecated. Read more: https://community.jitsi.org/t/issues-setting-up-jitsi-backend-with-lib-jitsi-meet-prosody-get-error-with-focus-server-sending-error-replies-for-1-queued-stanzas-because-of-failed-outgoing-connection-to-focus-undefined/120372/2
+
 
 # Old Readme:
 
