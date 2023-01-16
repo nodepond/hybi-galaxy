@@ -120,8 +120,33 @@ Again, do not forget to restart after editing:
 
 # Troubleshooting
 
-When having problems, connecting to the prosody-service on the backend, please check, if you set the serverUrl-param in the serverConfig.ts. The bosh-param is deprecated. Read more: https://community.jitsi.org/t/issues-setting-up-jitsi-backend-with-lib-jitsi-meet-prosody-get-error-with-focus-server-sending-error-replies-for-1-queued-stanzas-because-of-failed-outgoing-connection-to-focus-undefined/120372/2
+## Prosody / XMPP
 
+When having problems, connecting to the prosody-service on the backend, please check, if you set the serverUrl-param in the serverConfig.ts. The bosh-param is deprecated. Read more: https://community.jitsi.org/t/issues-setting-up-jitsi-backend-with-lib-jitsi-meet-prosody-get-error-with-focus-server-sending-error-replies-for-1-queued-stanzas-because-of-failed-outgoing-connection-to-focus-undefined/120372/1
+
+## JVB / Auth-Error / See other user, but stream is not recieved
+
+This issue seems to go down, that the jitsi-videobridge component does not seem to have the correnct user-auth credential. A typical error looks like this `tail -F /var/log/jitsi/jvb.log`
+
+```
+RetryStrategy$TaskRunner.run#198:     
+org.jivesoftware.smack.sasl.SASLErrorException: SASLError using SCRAM-SHA-1: not-authorized
+    at org.jivesoftware.smack.SASLAuthentication.authenticationFailed(SASLAuthentication.java:292)
+    at org.jivesoftware.smack.tcp.XMPPTCPConnection$PacketReader.parsePackets(XMPPTCPConnection.java:1100)
+    at org.jivesoftware.smack.tcp.XMPPTCPConnection$PacketReader.access$300(XMPPTCPConnection.java:1000)
+    at org.jivesoftware.smack.tcp.XMPPTCPConnection$PacketReader$1.run(XMPPTCPConnection.java:1016)
+    at java.base/java.lang.Thread.run(Thread.java:834)
+```
+
+The background is, that the install somehow failed to create the jvb-user with credentials at the prosody-service. To resolve: Get the password of the jvb-user at this file: `/etc/jitsi/videobridge/sip-communicator.properties` -> `org.jitsi.videobridge.xmpp.user.shard.PASSWORD`
+
+The create the prosody user with this command: `prosodyctl passwd jvb@auth.your-server.com`
+
+You will get asked for a password. Enter the password you obtained form `org.jitsi.videobridge.xmpp.user.shard.PASSWORD`
+
+Don't forget to restart all servived again to reflect the changes that were made.
+
+More info: https://community.jitsi.org/t/saslerror-using-scram-sha-1-not-authorized-on-debian-buster-system-with-existing-prosody/26775/1
 
 # Old Readme:
 
