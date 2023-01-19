@@ -4,6 +4,11 @@ import { useConferenceStore } from '../../../store/ConferenceStore'
 import { useHistory } from 'react-router-dom'
 import styled from 'styled-components'
 
+import sponsorKulturgemeinschaften from '../../../assets/supporters/02_KULTUR_GEMEINSCHAFTEN_Logo.svg'
+import sponsorBkm from '../../../assets/supporters/BKM_2017_WebSVG_de.svg'
+import sponsorNeustartKultur from '../../../assets/supporters/CDR_BKM_Neustart_Kultur_Wortmarke_neg_RGB_RZ.svg'
+import sponsorKsl from '../../../assets/supporters/KSL-Logo-RGB-schwarz.png'
+
 const JoinButton = styled.button`
   height: 50px;
   background: ${props => props.theme.primary['2']};
@@ -16,6 +21,18 @@ const JoinButton = styled.button`
     background-color: ${props => props.theme.primary['3']};
   }
 `
+const SupporterContainer = styled.div`
+  padding-top: 60px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+`
+const Supporter = styled.img`
+  height: 75px;
+  padding: 20px;
+  cursor: pointer;
+`
 
 export const ConsentContainer = () => {
   const [consent, setConsent] = useState <boolean>(false)
@@ -23,13 +40,10 @@ export const ConsentContainer = () => {
 
   const handleCheckbox = (e) => {
     setConsent(e.target.checked)
-    console.log('consent e...', e)
-    console.log('consent...', consent)
   }
 
   const onSubmit = (e) => {
     e.preventDefault()
-    console.log(consent)
     if (!consent) {
     } else {
       history.push(`/session/bpp-1`)
@@ -43,6 +57,13 @@ Bist Du einverstanden?<br />Dann klicke auf das kleine Feld und dann klicke auf 
       <input type='checkbox' onChange={handleCheckbox} defaultChecked={consent} /> Ich bin einverstanden.<br /><br />
       <JoinButton name="joinButton" onClick={onSubmit}>Start</JoinButton><br /><br />
       {!consent && <div style={{color: 'red'}}>Bitte Datenschutzerklärung bestätigen.</div>}
+      <SupporterContainer>
+        Gefördert von
+        <a href="https://www.kulturstaatsministerin.de" target="_blank" rel="nofollow"><Supporter src={sponsorBkm} alt="Die Beauftragte der Bundesregierung für Kultur und Medien"></Supporter></a>
+        <a href="https://www.neustartkultur.de" target="_blank" rel="nofollow"><Supporter src={sponsorNeustartKultur} alt="Neu Start Kultur" ></Supporter></a>
+        <a href="https://www.kulturstiftung.de" target="_blank" rel="nofollow"><Supporter src={sponsorKsl} alt="Kulturstiftung der Länder"></Supporter></a>
+        <a href="http://kulturgemeinschaften.de" target="_blank" rel="nofollow"><Supporter src={sponsorKulturgemeinschaften} alt="Kulturgemeinschaften"></Supporter></a>
+      </SupporterContainer>
     </>
   )
 }
