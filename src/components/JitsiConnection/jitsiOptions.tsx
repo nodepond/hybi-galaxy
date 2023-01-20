@@ -17,7 +17,6 @@ export interface IJitsiInitOptions {
 export const conferenceName = process.env.REACT_APP_DEMO_SESSION || "boatpeopleproject"
 
 export const conferenceOptions = {
-  stereo: true,
   p2p: { enabled: false }
 }
 
