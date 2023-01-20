@@ -127,6 +127,7 @@ export const useStageConnectionStore = create((set, get) => {
             { 
               startAudioMuted: false,
               ignoreStartMuted: true,
+              stereo: true,
               p2p: { enabled: false }
             }
           )
