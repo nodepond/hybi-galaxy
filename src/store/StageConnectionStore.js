@@ -127,8 +127,11 @@ export const useStageConnectionStore = create((set, get) => {
             { 
               startAudioMuted: false,
               ignoreStartMuted: true,
-              stereo: true,
-              p2p: { enabled: false }
+              stereo: true, /* This setting seems to be deprecated */
+              p2p: { enabled: false },
+              audioQuality: {
+                stereo: true /* This seems to be the new way to set the stereo flag */
+              }
             }
           )
           conference.on(jsMeet.events.conference.USER_JOINED, _addUser)
